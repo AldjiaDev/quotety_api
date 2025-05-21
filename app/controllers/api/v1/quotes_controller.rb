@@ -1,16 +1,20 @@
 class Api::V1::QuotesController < ApplicationController
  # GET /api/v1/quotes
-  def index
-  quotes = Quote.includes(:author, :category).all
+ def index
+  quotes = Quote.includes(:author, :category)
+                .page(params[:page])
+                .per(params[:per_page] || 10)
 
-  render json: quotes.as_json(
-    only: [:id, :content],
-    include: {
-      author: { only: [:id, :name, :slug] },
-      category: { only: [:id, :name, :slug] }
+  render json: {
+    quotes: quotes.as_json(include: [:author, :category]),
+    meta: {
+      current_page: quotes.current_page,
+      total_pages: quotes.total_pages,
+      total_count: quotes.total_count
     }
-  )
-  end
+  }
+ end
+
 
 # GET /api/v1/quotes/:id
   def show

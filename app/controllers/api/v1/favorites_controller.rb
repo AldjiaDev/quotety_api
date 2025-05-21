@@ -3,15 +3,21 @@ class Api::V1::FavoritesController < ApplicationController
 
   # GET /api/v1/favorites
   def index
-    favorites = current_user.favorite_quotes.includes(:author, :category)
-    render json: favorites.as_json(
-      only: [:id, :content],
-      include: {
-        author: { only: [:id, :name, :slug] },
-        category: { only: [:id, :name, :slug] }
+    favorites = current_user.favorite_quotes
+                            .includes(:author, :category)
+                            .page(params[:page])
+                            .per(params[:per_page] || 10)
+
+    render json: {
+      quotes: favorites.as_json(include: [:author, :category]),
+      meta: {
+        current_page: favorites.current_page,
+        total_pages: favorites.total_pages,
+        total_count: favorites.total_count
       }
-    )
+    }
   end
+
 
   # POST /api/v1/favorites
   def create

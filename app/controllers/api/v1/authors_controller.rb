@@ -1,9 +1,18 @@
 class Api::V1::AuthorsController < ApplicationController
   # GET /api/v1/authors
   def index
-    authors = Author.all
-    render json: authors.as_json(only: [:id, :name, :slug])
+    authors = Author.page(params[:page]).per(params[:per_page] || 10)
+
+    render json: {
+      authors: authors,
+      meta: {
+        current_page: authors.current_page,
+        total_pages: authors.total_pages,
+        total_count: authors.total_count
+      }
+    }
   end
+
 
   # GET /api/v1/authors/:id
   def show
