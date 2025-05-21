@@ -1,9 +1,18 @@
 class Api::V1::CategoriesController < ApplicationController
    # GET /api/v1/categories
    def index
-    categories = Category.all
-    render json: categories.as_json(only: [:id, :name, :slug])
-  end
+    categories = Category.page(params[:page]).per(params[:per_page] || 10)
+
+    render json: {
+      categories: categories,
+      meta: {
+        current_page: categories.current_page,
+        total_pages: categories.total_pages,
+        total_count: categories.total_count
+      }
+    }
+   end
+
 
   # GET /api/v1/categories/:id
   def show
