@@ -2,9 +2,9 @@ class Api::V1::AuthController < ApplicationController
    # POST /api/v1/register
    def register
     user = User.new(user_params)
-    if user.save
+      if user.save
       render json: { message: "Utilisateur créé avec succès", user: user }, status: :created
-    else
+      else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
   end
