@@ -24,7 +24,8 @@ Rails.application.routes.draw do
       # 🔐 Authentification
       post 'register', to: 'auth#register'
       post 'login', to: 'auth#login'
-      get 'me', to: 'auth#me' 
+      get 'me', to: 'auth#me'
+      resources :favorites, only: [:index, :create, :destroy]
     end
   end
 end
