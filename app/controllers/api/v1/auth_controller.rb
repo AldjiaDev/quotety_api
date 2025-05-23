@@ -40,6 +40,10 @@ class Api::V1::AuthController < ApplicationController
     }
   end
 
+  def logout
+    # Rien à faire avec un token JWT côté serveur, le front peut simplement oublier le token
+    render json: { message: "Déconnecté avec succès." }
+  end
 
   private
 

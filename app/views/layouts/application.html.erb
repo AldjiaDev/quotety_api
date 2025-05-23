@@ -47,9 +47,26 @@
       </form>
 
       <!-- Connexion -->
-      <a href="/login" class="btn btn-outline-primary rounded-pill">Connexion</a>
-    </div>
+  <% if current_user %>
+  <!-- ✅ Menu utilisateur connecté -->
+  <div class="dropdown">
+    <a class="btn btn-light dropdown-toggle rounded-pill px-3" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      👤 <%= current_user.username.capitalize %>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+      <li><a class="dropdown-item" href="/profile">👤 Mon profil</a></li>
+      <li><a class="dropdown-item" href="/favorites">❤️ Mes favoris</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li>
+        <%= link_to "🚪 Déconnexion", logout_path, method: :delete, class: "dropdown-item text-danger" %>
+      </li>
+    </ul>
   </div>
+<% else %>
+  <!-- 🔐 Bouton de connexion -->
+  <a href="/login" class="btn btn-outline-primary rounded-pill">Connexion</a>
+<% end %>
+
 </nav>
 
 

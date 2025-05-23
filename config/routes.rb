@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get 'me', to: 'auth#me'
       resources :favorites, only: [:index, :create, :destroy]
     end
+    # 🔓 Déconnexion (HTML / vue)
+  delete '/logout', to: 'api/v1/auth#logout'
   end
 end
-
