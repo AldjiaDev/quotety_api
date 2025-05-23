@@ -17,7 +17,9 @@
 
   <body>
     <!-- ✅ Navbar Quotety -->
-   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 sticky-top">
+   <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #fffaf3;">
+
+
   <div class="container">
     <!-- Logo -->
     <a class="navbar-brand fw-bold fs-3 text-primary" href="/">Quotety</a>
@@ -68,12 +70,11 @@
 <% end %>
 
 </nav>
-
-
     <!-- Contenu de la page -->
     <%= yield %>
 
     <!-- ✅ Bootstrap JS (menu burger & interactivité) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   </body>
 </html>

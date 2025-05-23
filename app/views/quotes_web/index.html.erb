@@ -1,7 +1,23 @@
-<div class="container py-5">
+<div class="hero-banner d-flex align-items-center text-white" style="background-image: url('<%= asset_path("hero.jpg") %>');">
+  <div class="container z-2">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="display-4 fw-bold">Trouvez l'inspiration.<br><span class="text-gradient">Une citation à la fois.</span></h1>
+        <p class="lead">Explorez des pensées puissantes, partagez des mots qui touchent l'âme, imprimez ce qui vous élève.</p>
+        <div class="d-flex gap-3 mt-4">
+          <%= link_to "Explorer les citations", quotes_path, class: "btn btn-primary px-4 py-2" %>
+          <%= link_to "Citation aléatoire", "#", class: "btn btn-outline-primary px-4 py-2" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</div>
+
+<div class="container py-5" style="background-color: #fff3e6;">
   <div class="text-center mb-5">
-    <h1 class="display-4 fw-bold">💬 Explorez les catégories</h1>
-    <p class="lead text-muted">Des citations inspirantes pour chaque univers.</p>
+    <h2 class="fw-bold display-6">💬 Explorez les catégories</h2>
+    <p class="text-muted">Des citations inspirantes pour chaque univers.</p>
   </div>
 
   <% categories = [
@@ -13,9 +29,9 @@
     { slug: "amour", name: "Amour", description: "Des phrases qui font battre le cœur" }
   ] %>
 
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center">
     <% categories.each do |category| %>
-      <div class="col">
+      <div class="col d-flex justify-content-center">
         <%= link_to quotes_path(category: category[:slug]), class: "text-decoration-none" do %>
           <div class="card category-card shadow-sm border-0 overflow-hidden">
             <div class="category-image-wrapper">
@@ -31,4 +47,3 @@
     <% end %>
   </div>
 </div>
-
