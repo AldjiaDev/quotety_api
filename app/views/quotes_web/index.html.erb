@@ -1,49 +1,59 @@
-<div class="hero-banner d-flex align-items-center text-white" style="background-image: url('<%= asset_path("hero.jpg") %>');">
+<!-- HERO SECTION -->
+<div class="hero-banner text-white d-flex align-items-center" style="background-image: url('<%= asset_path("hero.jpg") %>'); height: 450px; background-size: cover; background-position: center;">
   <div class="container z-2">
     <div class="row">
       <div class="col-md-6">
         <h1 class="display-4 fw-bold">Trouvez l'inspiration.<br><span class="text-gradient">Une citation à la fois.</span></h1>
         <p class="lead">Explorez des pensées puissantes, partagez des mots qui touchent l'âme, imprimez ce qui vous élève.</p>
-        <div class="d-flex gap-3 mt-4">
-          <%= link_to "Explorer les citations", quotes_path, class: "btn btn-primary px-4 py-2" %>
-          <%= link_to "Citation aléatoire", "#", class: "btn btn-outline-primary px-4 py-2" %>
+        <div class="d-flex gap-2">
+          <a href="/quotes" class="btn btn-primary">Explorer les citations</a>
+          <a href="#" class="btn btn-outline-primary">Citation aléatoire</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="overlay"></div>
 </div>
 
-<div class="container py-5" style="background-color: #fff3e6;">
-  <div class="text-center mb-5">
-    <h2 class="fw-bold display-6">💬 Explorez les catégories</h2>
-    <p class="text-muted">Des citations inspirantes pour chaque univers.</p>
-  </div>
+<!-- CATEGORIES -->
+<div class="bg-light py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold fs-3">💬 Explorez les <strong>catégories</strong></h2>
+      <p class="text-muted">Des citations inspirantes pour chaque univers.</p>
+    </div>
 
-  <% categories = [
-    { slug: "motivation", name: "Motivation", description: "Trouvez l'énergie pour avancer" },
-    { slug: "vie", name: "Vie", description: "Réflexions profondes sur l'existence" },
-    { slug: "humour", name: "Humour", description: "Souriez avec des mots bien choisis" },
-    { slug: "sagesse", name: "Sagesse", description: "L'écho des penseurs d'hier et d'aujourd'hui" },
-    { slug: "litterature", name: "Littérature", description: "Les mots au service de l’art" },
-    { slug: "amour", name: "Amour", description: "Des phrases qui font battre le cœur" }
-  ] %>
+    <% categories = [
+      { slug: "motivation", name: "Motivation", description: "Trouvez l'énergie pour avancer" },
+      { slug: "vie", name: "Vie", description: "Réflexions profondes sur l'existence" },
+      { slug: "humour", name: "Humour", description: "Souriez avec des mots bien choisis" },
+      { slug: "sagesse", name: "Sagesse", description: "L'écho des penseurs d'hier et d'aujourd'hui" },
+      { slug: "litterature", name: "Littérature", description: "Les mots au service de l’art" },
+      { slug: "amour", name: "Amour", description: "Des phrases qui font battre le cœur" }
+    ] %>
 
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center">
-    <% categories.each do |category| %>
-      <div class="col d-flex justify-content-center">
-        <%= link_to quotes_path(category: category[:slug]), class: "text-decoration-none" do %>
-          <div class="card category-card shadow-sm border-0 overflow-hidden">
-            <div class="category-image-wrapper">
-              <%= image_tag "categories/#{category[:slug]}.jpg", class: "w-100 h-100", alt: category[:name] %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      <% categories.each do |category| %>
+        <div class="col">
+          <%= link_to quotes_path(category: category[:slug]), class: "text-decoration-none" do %>
+            <div class="card category-card shadow-sm border-0 overflow-hidden">
+              <div class="category-image-wrapper">
+                <%= image_tag "categories/#{category[:slug]}.jpg", class: "w-100 h-100", alt: category[:name] %>
+              </div>
+              <div class="category-overlay text-white text-center">
+                <h5 class="fw-bold mb-1"><%= category[:name].upcase %></h5>
+                <p class="small m-0"><%= category[:description] %></p>
+              </div>
             </div>
-            <div class="category-overlay text-white text-center">
-              <h5 class="fw-bold mb-1"><%= category[:name].upcase %></h5>
-              <p class="small m-0"><%= category[:description] %></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<!-- FOOTER -->
+<footer class="py-4 mt-5" style="background-color: #3b2f2a; color: #fef5ed;">
+  <div class="container text-center">
+    <p class="mb-0">&copy; 2025 <strong>Quotety</strong>. Des mots qui marquent. Des citations pour chaque moment.</p>
+  </div>
+</footer>
