@@ -1,0 +1,35 @@
+<!-- INTRO DE LA CATÉGORIE -->
+<div class="category-hero text-center text-dark py-5" style="background-color: #fff4ec;">
+  <div class="container">
+    <p class="text-uppercase text-danger fw-semibold small mb-2">Catégorie</p>
+    <h1 class="display-4 fw-bold mb-4"><%= @category.name %></h1>
+    <div class="mx-auto" style="max-width: 960px;">
+      <%= image_tag "categories/#{@category.slug}.jpg",
+          class: "img-fluid w-100 rounded shadow-sm",
+          style: "height: 300px; object-fit: cover;" %>
+    </div>
+  </div>
+</div>
+
+<!-- LISTE DES CITATIONS -->
+<div class="container py-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <% @quotes.each do |quote| %>
+    <div class="col">
+      <div class="p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-between" style="background-color: #fff3e0;">
+        <div>
+          <div class="fs-1 text-danger">❝</div>
+          <p class="fs-5 fw-medium text-dark mt-3"><%= quote.content %></p>
+        </div>
+        <div>
+          <small class="text-muted d-block mt-3">– <%= quote.author.name %></small>
+          <div class="mt-2 d-flex gap-2">
+            <%= button_to "❤️", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger" %>
+            <%= link_to "🖨", "#", class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
