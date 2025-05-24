@@ -34,7 +34,8 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
       <% categories.each do |category| %>
         <div class="col">
-          <%= link_to quotes_path(category: category[:slug]), class: "text-decoration-none" do %>
+          <%= link_to category_quotes_path(category[:slug]), class: "text-decoration-none" do %>
+
             <div class="card category-card shadow-sm border-0 overflow-hidden">
               <div class="category-image-wrapper">
                 <%= image_tag "categories/#{category[:slug]}.jpg", class: "w-100 h-100", alt: category[:name] %>
