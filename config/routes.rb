@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Vue HTML
   get "categories", to: "quotes_web#index"
   get 'categories/:category', to: 'quotes_web#category', as: :category_quotes
+  get '/about', to: 'quotes_web#about', as: :about # <-- Déplacée ici
   resources :favorites, only: [:index, :create]
 
   # Santé
@@ -31,4 +32,3 @@ Rails.application.routes.draw do
     delete '/logout', to: 'api/v1/auth#logout'
   end
 end
-
