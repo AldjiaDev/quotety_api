@@ -7,6 +7,17 @@ Rails.application.routes.draw do
   get '/about', to: 'quotes_web#about', as: :about # <-- Déplacée ici
   resources :favorites, only: [:index, :create]
 
+  # 🔐 Authentification côté Vue HTML
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete "/logout", to: "sessions#destroy"
+
+  get '/register', to: 'registrations#new'
+  post '/register', to: 'registrations#create'
+  get '/welcome', to: 'sessions#welcome', as: :welcome
+
+
+
   # Santé
   get "up" => "rails/health#show", as: :rails_health_check
 

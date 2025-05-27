@@ -53,25 +53,21 @@
       </form>
 
       <!-- Connexion -->
-  <% if current_user %>
-  <!-- ✅ Menu utilisateur connecté -->
-  <div class="dropdown">
-    <a class="btn btn-light dropdown-toggle rounded-pill px-3" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-      👤 <%= current_user.username.capitalize %>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-      <li><a class="dropdown-item" href="/profile">👤 Mon profil</a></li>
-      <li><a class="dropdown-item" href="/favorites">❤️ Mes favoris</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li>
-        <%= link_to "🚪 Déconnexion", logout_path, method: :delete, class: "dropdown-item text-danger" %>
-      </li>
-    </ul>
-  </div>
-<% else %>
-  <!-- 🔐 Bouton de connexion -->
-  <a href="/login" class="btn btn-outline-primary rounded-pill">Connexion</a>
-<% end %>
+    <% if current_user %>
+      <!-- Icône ou nom + déconnexion -->
+      <div class="dropdown">
+        <a class="btn btn-outline-secondary dropdown-toggle rounded-pill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          👤 <%= current_user.username %>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><%= link_to "Mon profil", "/me", class: "dropdown-item" %></li>
+          <li><%= link_to "Déconnexion", logout_path, method: :delete, class: "dropdown-item text-danger" %></li>
+        </ul>
+      </div>
+    <% else %>
+      <a href="/login" class="btn btn-outline-primary rounded-pill">Connexion</a>
+    <% end %>
+
 
 </nav>
     <!-- Contenu de la page -->
