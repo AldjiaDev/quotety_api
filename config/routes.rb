@@ -22,6 +22,12 @@ Rails.application.routes.draw do
   # 🩺 Health check
   get "up", to: "rails/health#show", as: :rails_health_check
 
+  get "authors", to: "authors_web#index", as: :authors
+  get "authors/:id", to: "authors_web#show", as: :author_quotes
+  get "quotes/search", to: "quotes_web#search", as: :search_quotes
+
+
+
   # 🧪 API RESTful
   namespace :api do
     namespace :v1 do
