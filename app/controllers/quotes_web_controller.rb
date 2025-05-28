@@ -17,4 +17,14 @@ class QuotesWebController < ApplicationController
 
   def about
   end
+
+  def search
+    query = params[:q].downcase
+
+    @quotes = Quote.joins(:author)
+                 .where("LOWER(quotes.content) LIKE :q OR LOWER(authors.name) LIKE :q", q: "%#{query}%")
+                 .includes(:author, :category)
+
+    render :search_results
+  end
 end
