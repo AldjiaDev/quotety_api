@@ -1,47 +1,53 @@
 Rails.application.routes.draw do
+  # 🌐 Page d'accueil
   root "quotes_web#index"
 
-  # Vue HTML
+  # ✅ Pages HTML (vues utilisateur)
+  get "quotes", to: "quotes_web#index", as: :quotes
   get "categories", to: "quotes_web#index"
-  get 'categories/:category', to: 'quotes_web#category', as: :category_quotes
-  get '/about', to: 'quotes_web#about', as: :about # <-- Déplacée ici
-  resources :favorites, only: [:index, :create]
+  get "categories/:category", to: "quotes_web#category", as: :category_quotes
+  get "about", to: "quotes_web#about", as: :about
 
-  # 🔐 Authentification côté Vue HTML
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete "/logout", to: "sessions#destroy"
+  # ❤️ Favoris (interface utilisateur)
+  get "favorites", to: "favorites_web#index", as: :favorites
+  post "favorites", to: "favorites_web#create"
+  delete "favorites/:id", to: "favorites_web#destroy", as: :remove_favorite
 
-  get '/register', to: 'registrations#new'
-  post '/register', to: 'registrations#create'
-  get '/welcome', to: 'sessions#welcome', as: :welcome
-  get "/me", to: "users#show", as: :me
+  # 👤 Authentification HTML
+  get "login", to: "sessions#new", as: :login
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy", as: :logout
+  get "me", to: "users#show", as: :me
 
+  # 🩺 Health check
+  get "up", to: "rails/health#show", as: :rails_health_check
 
-
-
-  # Santé
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # API
+  # 🧪 API RESTful
   namespace :api do
     namespace :v1 do
+      # Citations
       resources :quotes, only: [:index, :show] do
         collection { get :search }
       end
+
+      # Auteurs
       resources :authors, only: [:index, :show] do
         collection { get :search }
       end
+
+      # Catégories
       resources :categories, only: [:index, :show] do
         collection { get :search }
       end
 
-      post 'register', to: 'auth#register'
-      post 'login', to: 'auth#login'
-      get 'me', to: 'auth#me'
+      # Favoris (API JSON)
       resources :favorites, only: [:index, :create, :destroy]
-    end
 
-    delete '/logout', to: 'api/v1/auth#logout'
+      # Authentification API
+      post "register", to: "auth#register"
+      post "login", to: "auth#login"
+      get "me", to: "auth#me"
+      delete "logout", to: "auth#logout"
+    end
   end
 end

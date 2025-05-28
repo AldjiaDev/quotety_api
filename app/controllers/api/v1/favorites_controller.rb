@@ -1,44 +1,36 @@
-class Api::V1::FavoritesController < ApplicationController
-  before_action :authenticate_request
+module Api
+  module V1
+    class FavoritesController < ApplicationController
+      before_action :require_login
 
-  # GET /api/v1/favorites
-  def index
-    favorites = current_user.favorite_quotes
-                            .includes(:author, :category)
-                            .page(params[:page])
-                            .per(params[:per_page] || 10)
+      def index
+        favorites = current_user.favorite_quotes.includes(:author, :category)
+        render json: favorites
+      end
 
-    render json: {
-      quotes: favorites.as_json(include: [:author, :category]),
-      meta: {
-        current_page: favorites.current_page,
-        total_pages: favorites.total_pages,
-        total_count: favorites.total_count
-      }
-    }
-  end
+      def create
+        quote = Quote.find(params[:quote_id])
+        Favorite.create(user: current_user, quote: quote)
+        render json: { success: true, message: "Ajouté aux favoris." }
+      end
 
+      def destroy
+        favorite = current_user.favorites.find_by(quote_id: params[:id])
+        if favorite
+          favorite.destroy
+          render json: { success: true, message: "Retiré des favoris." }
+        else
+          render json: { success: false, message: "Non trouvé." }, status: :not_found
+        end
+      end
 
-  # POST /api/v1/favorites
-  def create
-    quote = Quote.find_by(id: params[:quote_id])
-    return render json: { error: "Citation introuvable" }, status: :not_found unless quote
+      private
 
-    favorite = current_user.favorites.build(quote: quote)
-
-    if favorite.save
-      render json: { message: "Citation ajoutée aux favoris" }, status: :created
-    else
-      render json: { error: favorite.errors.full_messages }, status: :unprocessable_entity
+      def require_login
+        unless current_user
+          render json: { error: "Non autorisé" }, status: :unauthorized
+        end
+      end
     end
-  end
-
-  # DELETE /api/v1/favorites/:id
-  def destroy
-    favorite = current_user.favorites.find_by(id: params[:id])
-    return render json: { error: "Favori introuvable" }, status: :not_found unless favorite
-
-    favorite.destroy
-    render json: { message: "Citation retirée des favoris" }
   end
 end
