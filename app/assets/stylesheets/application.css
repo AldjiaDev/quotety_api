@@ -178,3 +178,28 @@ footer {
 img.shadow {
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
 }
+
+.card blockquote {
+  font-style: italic;
+  color: #333;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.card blockquote::before {
+  content: "“";
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+  top: -5px;
+  color: #f17c58;
+}
+
+.card-footer {
+  background-color: #fff8f4;
+}
+
+.card-body {
+  height: 250px;
+}
+
