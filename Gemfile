@@ -34,7 +34,8 @@ gem "simple_form"
 gem "sassc-rails"
 gem "pg", group: [:development, :test]
 gem "dotenv-rails", groups: [:development, :test]
-gem "terser-rails"
+
+
 
 
 group :development, :test do
