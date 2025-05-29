@@ -34,7 +34,8 @@ gem "simple_form"
 gem "sassc-rails"
 gem "pg", group: [:development, :test]
 gem "dotenv-rails", groups: [:development, :test]
-gem 'uglifier'
+gem 'uglifier', '>= 1.3.0'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
