@@ -99,6 +99,7 @@ GEM
     drb (2.2.1)
     erb (5.0.1)
     erubi (1.13.1)
+    execjs (2.10.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -317,6 +318,8 @@ GEM
     timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uglifier (4.2.1)
+      execjs (>= 0.3.0, < 3)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
@@ -358,6 +361,7 @@ DEPENDENCIES
   simple_form
   sqlite3 (>= 1.4)
   tzinfo-data
+  uglifier
 
 BUNDLED WITH
    2.6.8
