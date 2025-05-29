@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "pages/welcome"
   # 🌐 Page d'accueil
   root "quotes_web#index"
 
@@ -25,6 +26,22 @@ Rails.application.routes.draw do
   get "authors", to: "authors_web#index", as: :authors
   get "authors/:id", to: "authors_web#show", as: :author_quotes
   get "quotes/search", to: "quotes_web#search", as: :search_quotes
+
+  get "admin", to: "admin_dashboard#index", as: :admin_dashboard
+
+  get "register", to: "users#new", as: :register
+  post "register", to: "users#create"
+
+  get "welcome", to: "pages#welcome", as: :welcome
+
+
+
+# Pour gérer les ressources
+  namespace :admin do
+  resources :quotes, only: [:index, :new, :create]
+  resources :authors, only: [:new, :create]
+  resources :categories, only: [:new, :create]
+end
 
 
 

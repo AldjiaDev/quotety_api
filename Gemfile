@@ -49,3 +49,5 @@ end
 gem "rspec-rails", "~> 8.0"
 
 gem "kaminari", "~> 1.2"
+
+gem "importmap-rails", "~> 2.1"

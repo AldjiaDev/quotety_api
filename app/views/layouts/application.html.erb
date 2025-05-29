@@ -8,75 +8,88 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- Feuille de styles -->
+    <!-- Styles -->
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
-
-    <!-- ✅ Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <!-- ✅ Navbar Quotety -->
-  <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #fffaf3;">
-  <div class="container">
-    <!-- Logo -->
-    <a class="navbar-brand fw-bold fs-3 text-primary" href="/">Quotety</a>
+    <!-- ✅ Navbar -->
+    <nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #fffaf3;">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-3 text-primary" href="/">Quotety</a>
 
-    <!-- Burger menu -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to "Citations", quotes_path, class: "nav-link fw-semibold" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Auteurs", "/authors", class: "nav-link fw-semibold" %>
-        </li>
-        <% if current_user %>
-          <li class="nav-item">
-            <%= link_to "Favoris", favorites_path, class: "nav-link fw-semibold" %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to "À propos", about_path, class: "nav-link fw-semibold" %>
-        </li>
-      </ul>
-
-      <!-- Barre de recherche -->
-      <form class="d-flex me-3" method="get" action="/quotes/search">
-        <input class="form-control rounded-pill px-3 me-2" type="search" name="q" placeholder="Rechercher..." aria-label="Recherche">
-      </form>
-
-      <!-- Connexion / Déconnexion -->
-      <% if current_user %>
-        <div class="dropdown">
-          <a class="btn btn-outline-secondary dropdown-toggle rounded-pill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            👤 <%= current_user.username %>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><%= link_to "Mon profil", "/me", class: "dropdown-item" %></li>
-            <li><%= link_to "Déconnexion", logout_path, method: :delete, class: "dropdown-item text-danger" %></li>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to "Citations", quotes_path, class: "nav-link fw-semibold" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Auteurs", authors_path, class: "nav-link fw-semibold" %>
+            </li>
+            <% if current_user %>
+              <li class="nav-item">
+                <%= link_to "Favoris", favorites_path, class: "nav-link fw-semibold" %>
+              </li>
+            <% end %>
+            <li class="nav-item">
+              <%= link_to "À propos", about_path, class: "nav-link fw-semibold" %>
+            </li>
           </ul>
+
+          <!-- Barre de recherche -->
+          <form class="d-flex me-3" method="get" action="/quotes/search">
+            <input class="form-control rounded-pill px-3 me-2" type="search" name="q" placeholder="Rechercher..." aria-label="Recherche">
+          </form>
+
+          <!-- Utilisateur -->
+          <% if current_user %>
+            <div class="dropdown">
+              <a class="btn btn-outline-secondary dropdown-toggle rounded-pill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                👤 <%= current_user.username %>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><%= link_to "Mon profil", me_path, class: "dropdown-item" %></li>
+
+                <% if current_user.admin? %>
+                  <li><%= link_to "Administration", admin_quotes_path, class: "dropdown-item text-primary" %></li>
+                <% end %>
+
+                <li>
+                  <%= link_to "Déconnexion", logout_path, method: :delete, data: { turbo_method: :delete }, class: "dropdown-item text-danger" %>
+                </li>
+              </ul>
+            </div>
+          <% else %>
+            <%= link_to "Connexion", login_path, class: "btn btn-outline-primary rounded-pill" %>
+          <% end %>
         </div>
-      <% else %>
-        <%= link_to "Connexion", login_path, class: "btn btn-outline-primary rounded-pill" %>
+      </div>
+    </nav>
+
+    <!-- ✅ Flash messages -->
+    <div class="container mt-3">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type == "alert" ? "danger" : "success" %> alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
       <% end %>
     </div>
-  </div>
-</nav>
 
-
-
-</nav>
-    <!-- Contenu de la page -->
+    <!-- ✅ Contenu principal -->
     <%= yield %>
 
-    <!-- ✅ Bootstrap JS (menu burger & interactivité) -->
+    <!-- Scripts Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <%= javascript_importmap_tags %>
   </body>
 </html>
+

@@ -1,0 +1,26 @@
+<div class="container py-5">
+  <h2 class="mb-4">Toutes les citations</h2>
+
+  <table class="table table-bordered table-hover bg-white">
+    <thead class="table-light">
+      <tr>
+        <th>Citation</th>
+        <th>Auteur</th>
+        <th>Catégorie</th>
+        <th>Date d'ajout</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quotes.each do |quote| %>
+        <tr>
+          <td><%= quote.content.truncate(80) %></td>
+          <td><%= quote.author&.name %></td>
+          <td><%= quote.category&.name %></td>
+          <td><%= quote.created_at.strftime("%d/%m/%Y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "➕ Ajouter une nouvelle citation", new_admin_quote_path, class: "btn btn-primary mt-4" %>
+</div>
