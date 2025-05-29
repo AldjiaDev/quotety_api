@@ -1,7 +1,7 @@
 require 'jwt'
 
 class JsonWebToken
-  SECRET_KEY = Rails.application.secret_key_base
+  SECRET_KEY = ENV['JWT_SECRET']
 
   def self.encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
@@ -9,9 +9,7 @@ class JsonWebToken
   end
 
   def self.decode(token)
-    body = JWT.decode(token, SECRET_KEY)[0]
-    HashWithIndifferentAccess.new(body)
-  rescue
-    nil
+    decoded = JWT.decode(token, SECRET_KEY)[0]
+    HashWithIndifferentAccess.new(decoded)
   end
 end
