@@ -25,7 +25,9 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
   # config.assets.js_compressor = :esbuild
-  config.assets.js_compressor = Uglifier.new(harmony: true)
+  # Laisse Rails choisir le compresseur moderne (Terser fonctionne mieux)
+  config.assets.js_compressor = :terser
+
 
 
   # Specifies the header that your server uses for sending files.

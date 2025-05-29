@@ -34,7 +34,7 @@ gem "simple_form"
 gem "sassc-rails"
 gem "pg", group: [:development, :test]
 gem "dotenv-rails", groups: [:development, :test]
-gem 'uglifier', '>= 1.3.0'
+gem "terser-rails"
 
 
 group :development, :test do
