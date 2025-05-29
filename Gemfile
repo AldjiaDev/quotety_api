@@ -28,3 +28,5 @@ end
 gem "rspec-rails", "~> 8.0"
 gem "kaminari", "~> 1.2"
 gem "jsbundling-rails"
+gem "stimulus-rails"
+gem "sqlite3", group: [:development, :test]
