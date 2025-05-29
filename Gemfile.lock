@@ -107,6 +107,10 @@ GEM
       activesupport (>= 6.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    importmap-rails (2.1.0)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.8.0)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -336,6 +340,7 @@ DEPENDENCIES
   bootstrap (~> 5.3)
   brakeman
   debug
+  importmap-rails (~> 2.1)
   jwt
   kaminari (~> 1.2)
   puma (>= 5.0)

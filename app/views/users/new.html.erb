@@ -1,0 +1,27 @@
+<div class="container py-5">
+  <h2 class="mb-4 text-center">Créer un compte</h2>
+
+  <%= form_with model: @user, url: register_path do |f| %>
+    <div class="mb-3">
+      <%= f.label :username %>
+      <%= f.text_field :username, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
+
+    <%= f.submit "S'inscrire", class: "btn btn-primary" %>
+  <% end %>
+</div>
