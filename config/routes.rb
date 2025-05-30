@@ -64,7 +64,8 @@ end
       end
 
       # Favoris (API JSON)
-      resources :favorites, only: [:index, :create, :destroy]
+      resources :favorites, controller: 'favorites_web', only: [:index, :create, :destroy]
+
 
       # Authentification API
       post "register", to: "auth#register"
