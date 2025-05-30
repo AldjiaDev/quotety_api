@@ -1,30 +1,21 @@
 class QuotesWebController < ApplicationController
   def index
-    @categories = Category.where(slug: %w[motivation vie humour sagesse litterature amour])
+    @quotes = Quote.all
   end
 
   def category
-    slug = params[:category]
-    @category = Category.find_by(slug: slug)
-
+    @category = Category.find_by(name: params[:category])
     if @category
-      @quotes = @category.quotes.includes(:author)
+      @quotes = @category.quotes
+      render :category
     else
-      flash[:alert] = "Catégorie introuvable"
-      redirect_to root_path
+      redirect_to root_path, alert: "Catégorie introuvable."
     end
   end
 
-  def about
-  end
-
   def search
-    query = params[:q].downcase
-
-    @quotes = Quote.joins(:author)
-                 .where("LOWER(quotes.content) LIKE :q OR LOWER(authors.name) LIKE :q", q: "%#{query}%")
-                 .includes(:author, :category)
-
-    render :search_results
+    query = params[:q]
+    @quotes = Quote.where("content ILIKE ?", "%#{query}%")
   end
 end
+
