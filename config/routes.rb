@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   delete "logout", to: "sessions#destroy", as: :logout
 
   get "register", to: "users#new", as: :register
+  post "register", to: "users#create"
   post "users", to: "users#create"
   get "me", to: "users#show", as: :me
 
