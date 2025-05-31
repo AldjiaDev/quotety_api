@@ -4,16 +4,14 @@ class QuotesWebController < ApplicationController
   end
 
 def category
-  @category = Category.find_by(name: params[:category])
+  @category = Category.find_by(slug: params[:category])
   if @category
-    @quotes = @category.quotes.includes(:author)
+    @quotes = @category.quotes.includes(:author, :category)
   else
-    render plain: "Catégorie introuvable : #{params[:category]}", status: :not_found
+    redirect_to quotes_path, alert: "Catégorie introuvable"
   end
 end
-
   def search
-    query = params[:q]
-    @quotes = Quote.where("content ILIKE ?", "%#{query}%")
+    @quotes = Quote.where("content LIKE ?", "%#{params[:q]}%").includes(:author, :category)
   end
 end

@@ -1,24 +1,18 @@
 <h1>Créer un compte</h1>
 
-<%= form_with model: @user, url: register_path do |f| %>
-  <div>
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div>
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </div>
-  <div>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div>
-    <%= f.submit "Créer mon compte", class: "btn btn-primary" %>
-  </div>
+<%= form_with model: @user, url: register_path do |form| %>
+  <%= form.label :username %>
+  <%= form.text_field :username %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation %>
+
+  <%= form.submit "Créer mon compte" %>
 <% end %>
 
