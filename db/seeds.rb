@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 # Vider les anciennes données
-Q# Suppression des données existantes
+# Suppression des données existantes
 Favorite.destroy_all
 Quote.destroy_all
 Author.destroy_all
