@@ -1,16 +1,23 @@
 class QuotesWebController < ApplicationController
   def index
-    @quotes = Quote.all
+    @categories = Category.all.map do |category|
+    {
+      name: category.name,
+      slug: category.slug,
+    }
+    end
   end
 
-def category
+  def category
   @category = Category.find_by(slug: params[:category])
-  if @category
-    @quotes = @category.quotes.includes(:author, :category)
+  if @category.nil?
+    redirect_to quotes_path, alert: "Catégorie introuvable."
   else
-    redirect_to quotes_path, alert: "Catégorie introuvable"
+    @quotes = @category.quotes.includes(:author)
   end
 end
+
+
   def search
     @quotes = Quote.where("content LIKE ?", "%#{params[:q]}%").includes(:author, :category)
   end

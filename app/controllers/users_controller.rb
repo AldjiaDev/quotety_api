@@ -6,15 +6,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, notice: "Compte créé avec succès"
+      redirect_to login_path, notice: "Compte créé avec succès."
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
-  end
-
-  def show
-    @user = current_user
   end
 
   private

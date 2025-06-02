@@ -30,25 +30,20 @@
       { slug: "litterature", name: "Littérature", description: "Les mots au service de l’art" },
       { slug: "amour", name: "Amour", description: "Des phrases qui font battre le cœur" }
     ] %>
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
-      <% categories.each do |category| %>
-        <div class="col">
-          <%= link_to category_quotes_path(category[:slug]), class: "text-decoration-none" do %>
-
-            <div class="card category-card shadow-sm border-0 overflow-hidden">
-              <div class="category-image-wrapper">
-                <%= image_tag "categories/#{category[:slug]}.jpg", class: "w-100 h-100", alt: category[:name] %>
-              </div>
-              <div class="category-overlay text-white text-center">
-                <h5 class="fw-bold mb-1"><%= category[:name].upcase %></h5>
-                <p class="small m-0"><%= category[:description] %></p>
-              </div>
-            </div>
-          <% end %>
+<div class="row">
+  <% Category.all.each do |category| %>
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= category.name.capitalize %></h5>
+          <p class="card-text">Voir toutes les citations liées à cette catégorie.</p>
+          <%= link_to "Voir les citations", category_quotes_path(category: category.name.parameterize), class: "btn btn-primary" %>
         </div>
-      <% end %>
+      </div>
     </div>
+  <% end %>
+</div>
+
   </div>
 </div>
 
