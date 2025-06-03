@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "quotes_web#index"
 
   # Pages HTML
-  get "quotes", to: "quotes_web#index", as: :quotes
+  get "quotes", to: "quotes_web#all", as: :quotes
   get "categories", to: "quotes_web#index"
   get "categories/:category", to: "quotes_web#category", as: :category_quotes
   get "about", to: "quotes_web#about", as: :about
