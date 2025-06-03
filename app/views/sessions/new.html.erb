@@ -1,10 +1,10 @@
 <div class="container py-5" style="max-width: 500px;">
-  <h2 class="mb-4 text-center">Connexion à Quotety</h2>
+  <h2 class="mb-4 text-center text-primary">Connexion à Quotety</h2>
 
   <%= form_with url: login_path, method: :post, local: true do |form| %>
     <div class="mb-3">
       <%= form.label :email, class: "form-label" %>
-      <%= form.email_field :email, class: "form-control", required: true %>
+      <%= form.email_field :email, class: "form-control", required: true, autofocus: true %>
     </div>
 
     <div class="mb-3">
@@ -17,8 +17,14 @@
     </div>
   <% end %>
 
+  <% if flash[:alert] %>
+    <div class="alert alert-danger mt-3" role="alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
   <p class="mt-3 text-center">
-    Pas encore de compte ?
+    Pas encore inscrit ?
     <%= link_to "Créer un compte", register_path %>
   </p>
 </div>
