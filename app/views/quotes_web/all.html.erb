@@ -4,21 +4,11 @@
     <p class="text-muted">Laissez-vous inspirer par les mots des grands auteurs.</p>
   </div>
 
-  <div class="row">
-    <% @quotes.each do |quote| %>
-      <div class="col-md-6 mb-4">
-        <div class="card shadow-sm h-100">
-          <div class="card-body">
-            <blockquote class="blockquote mb-3">
-              <p class="mb-0">« <%= quote.content %> »</p>
-            </blockquote>
-            <footer class="blockquote-footer">
-              <%= quote.author.name %>
-              <% if quote.category %> — <%= quote.category.name %><% end %>
-            </footer>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <% if @quotes.any? %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
+    </div>
+  <% else %>
+    <p class="text-center text-muted">Aucune citation à afficher.</p>
+  <% end %>
 </div>

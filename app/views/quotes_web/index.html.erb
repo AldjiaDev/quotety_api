@@ -63,29 +63,18 @@
     <p class="text-muted">Un aperçu de nos meilleures pensées.</p>
   </div>
 
-  <div class="row">
-    <% @quotes.each do |quote| %>
-      <div class="col-md-6 mb-4">
-        <div class="card shadow-sm h-100">
-          <div class="card-body">
-            <blockquote class="blockquote mb-3">
-              <p class="mb-0">« <%= quote.content %> »</p>
-            </blockquote>
-            <footer class="blockquote-footer">
-              <%= quote.author.name %>
-              <% if quote.category %> — <%= quote.category.name %><% end %>
-            </footer>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <% if @quotes.any? %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+      <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
+    </div>
 
-  <div class="text-center mt-4">
-    <%= link_to "Voir plus de citations", quotes_path, class: "btn btn-outline-primary" %>
-  </div>
+    <div class="text-center mt-4">
+      <%= link_to "Voir plus de citations", quotes_path, class: "btn btn-outline-primary" %>
+    </div>
+  <% else %>
+    <p class="text-center text-muted">Aucune citation à afficher.</p>
+  <% end %>
 </div>
-
 
 <!-- FOOTER -->
 <footer class="py-4 mt-5" style="background-color: #3b2f2a; color: #fef5ed;">

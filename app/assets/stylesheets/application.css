@@ -202,3 +202,14 @@ img.shadow {
 .card-body {
   height: 250px;
 }
+
+.citation-card {
+  transition: transform 0.3s ease;
+  border: none;
+  background-color: #fff;
+}
+
+.citation-card:hover {
+  transform: scale(1.03);
+}
+
