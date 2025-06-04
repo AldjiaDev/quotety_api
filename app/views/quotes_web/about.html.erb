@@ -1,32 +1,55 @@
-<!-- HERO SECTION -->
-<div class="hero-banner text-white d-flex align-items-center" style="background-image: url('<%= asset_path("about.jpg") %>'); height: 450px; background-size: cover; background-position: center;">
-  <div class="container z-2">
-    <div class="row">
-      <div class="col-md-8">
-        <h1 class="display-4 fw-bold">Bienvenue sur <span class="text-gradient">Quotety</span></h1>
-        <p class="lead">Un monde de mots, un souffle d’inspiration.</p>
-      </div>
+<!-- ✅ HEADER / INTRO SANS IMAGE -->
+<div class="py-5 text-center" style="background-color: #ffeede;">
+  <div class="container">
+    <h1 class="display-4 fw-bold" style="font-family: 'Playfair Display', serif;">À propos de <span class="text-gradient">Quotety</span></h1>
+    <p class="lead mt-3">Un monde de mots, un souffle d’inspiration pour chaque instant.</p>
+  </div>
+</div>
+
+<!-- ✅ CITATION CENTRALE -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 text-center">
+      <blockquote class="blockquote fs-4 fst-italic text-dark" style="font-family: 'Playfair Display', serif;">
+        <p>« Les mots sont, bien sûr, la plus puissante drogue utilisée par l'humanité. »</p>
+        <footer class="blockquote-footer mt-2 text-muted">Rudyard Kipling</footer>
+      </blockquote>
     </div>
   </div>
 </div>
 
-<!-- CONTENT SECTION -->
-<div class="container py-5">
+<!-- ✅ CONTENU AVEC IMAGE + TEXTE ENRICHI -->
+<div class="container pb-5">
   <div class="row align-items-center">
+    <!-- Image à gauche -->
     <div class="col-md-6 mb-4 mb-md-0">
       <%= image_tag "about.jpg", alt: "À propos de Quotety", class: "img-fluid rounded shadow" %>
     </div>
+
+    <!-- Texte enrichi à droite -->
     <div class="col-md-6">
-      <h1 class="display-5 fw-bold mb-3">Quotety</h1>
-      <p class="lead">
-        <strong>Quotety</strong> est bien plus qu'un site de citations. C’est une source d’inspiration, un souffle de motivation, un espace pour découvrir les mots qui résonnent avec votre histoire.
+      <h2 class="fw-bold mb-3" style="font-family: 'Playfair Display', serif;">Quotety</h2>
+
+      <p class="lead mb-3">
+        <strong>Quotety</strong> est né d'une conviction simple : les mots justes peuvent transformer un moment ordinaire en une source d'inspiration profonde.
       </p>
+
       <p>
-        Explorez des catégories comme <em>la vie</em>, <em>la sagesse</em>, <em>l’amour</em> ou <em>l’humour</em>. Enregistrez vos favoris, partagez-les, imprimez-les, et inspirez les autres.
+        Dans un monde saturé d'informations, nous avons voulu créer un espace calme, esthétique et humain, où chaque citation a été choisie pour toucher, éveiller, questionner ou apaiser.
       </p>
-      <p class="text-muted small">
-        Notre mission : mettre les mots justes entre les mains de ceux qui en ont besoin. Parce qu'une citation peut tout changer.
+
+      <p>
+        Que vous cherchiez des pensées profondes pour méditer, des phrases d'amour à partager, ou un simple sourire à travers l’humour, Quotety vous guide parmi les plus belles voix de la littérature, de la philosophie et de la culture populaire.
+      </p>
+
+      <p>
+        Notre mission est de donner accès à la sagesse de ceux qui ont su manier les mots avec art, en rendant chaque citation accessible, partageable et mémorable.
+      </p>
+
+      <p class="text-muted small mt-3">
+        Quotety n’est pas qu’une collection de citations. C’est un hommage au pouvoir des mots.
       </p>
     </div>
   </div>
 </div>
+
