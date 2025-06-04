@@ -22,27 +22,45 @@
       <p class="text-muted">Des citations inspirantes pour chaque univers.</p>
     </div>
 
-    <div class="row">
-      <% categories = ["amour", "humour", "litterature", "motivation", "sagesse", "vie"] %>
-      <% categories.each do |category| %>
-        <div class="col-md-4 mb-4">
-          <div class="card h-100">
-            <%= image_tag "categories/#{category}.jpg", class: "card-img-top", alt: category.capitalize %>
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= link_to category.capitalize, category_quotes_path(category: category), class: "stretched-link text-decoration-none" %></h5>
+    <% descriptions = {
+      "amour" => "Citations sur l'amour et les sentiments.",
+      "humour" => "Un brin de légèreté et d'esprit.",
+      "litterature" => "Extraits et pensées d’auteurs célèbres.",
+      "motivation" => "Pour booster ton moral et ta volonté.",
+      "sagesse" => "Réflexions profondes et universelles.",
+      "vie" => "Sur le sens, le quotidien et l’existence."
+    } %>
+
+    <% categories = ["amour", "humour", "litterature", "motivation", "sagesse", "vie"] %>
+
+    <% categories.each_slice(3).with_index do |row, index| %>
+      <div class="row justify-content-center g-4 <%= 'mb-4' unless index == 1 %>">
+        <% row.each do |category| %>
+          <div class="col-10 col-sm-6 col-md-4">
+            <div class="card category-card ratio ratio-1x1 overflow-hidden shadow-sm">
+              <%= link_to category_quotes_path(category: category), class: "stretched-link text-decoration-none" do %>
+                <%= image_tag "categories/#{category}.jpg", class: "w-100 h-100 object-fit-cover category-img", alt: category.capitalize %>
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-3 bg-gradient">
+                  <h5 class="text-white fw-bold"><%= category.capitalize %></h5>
+                  <p class="text-white small mb-0"><%= descriptions[category] %></p>
+                </div>
+              <% end %>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
-<!-- ALL QUOTES -->
+
+
+
+<!-- ALL QUOTES PREVIEW -->
 <div class="container py-5">
   <div class="text-center mb-5">
-    <h2 class="fw-bold fs-3">📚 Toutes les <strong>citations</strong></h2>
-    <p class="text-muted">Laissez-vous inspirer par les mots des grands auteurs.</p>
+    <h2 class="fw-bold fs-3">📚 Citations</h2>
+    <p class="text-muted">Un aperçu de nos meilleures pensées.</p>
   </div>
 
   <div class="row">
@@ -62,7 +80,12 @@
       </div>
     <% end %>
   </div>
+
+  <div class="text-center mt-4">
+    <%= link_to "Voir plus de citations", quotes_path, class: "btn btn-outline-primary" %>
+  </div>
 </div>
+
 
 <!-- FOOTER -->
 <footer class="py-4 mt-5" style="background-color: #3b2f2a; color: #fef5ed;">

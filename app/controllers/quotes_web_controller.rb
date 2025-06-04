@@ -1,10 +1,9 @@
 class QuotesWebController < ApplicationController
   def index
-    @quotes = Quote.includes(:author, :category).all
-    @categories = Category.all.map do |category|
-    { name: category.name, slug: category.slug }
-    end
+    @quotes = Quote.includes(:author, :category).limit(6)
+    @categories = Category.all.map { |category| { name: category.name, slug: category.slug } }
   end
+
 
   def all
     @quotes = Quote.includes(:author, :category).all
