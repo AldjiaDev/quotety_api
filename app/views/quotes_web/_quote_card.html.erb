@@ -1,13 +1,23 @@
 <div class="col-12 col-sm-6 col-lg-4 mb-4">
-  <div class="card citation-card ratio ratio-1x1 overflow-hidden shadow-sm">
-    <div class="card-body d-flex flex-column justify-content-center align-items-center text-center p-3">
-      <blockquote class="blockquote mb-3">
-        <p class="mb-0 fs-6">« <%= quote.content %> »</p>
-      </blockquote>
-      <footer class="blockquote-footer small">
-        <%= quote.author.name %>
-        <% if quote.category %> — <%= quote.category.name %><% end %>
-      </footer>
+  <div class="card text-center shadow-sm p-4 d-flex justify-content-center align-items-center"
+       style="aspect-ratio: 1 / 1; background-color: #ffeede; border-radius: 1rem;">
+
+    <div class="d-flex flex-column justify-content-center align-items-center h-100 w-100 text-center">
+
+      <div class="quote-icon mb-3">
+        <i class="bi bi-quote fs-2 text-info"></i>
+      </div>
+
+      <p class="quote-text mb-4 px-3" style="font-size: 1.2rem; font-style: italic; font-family: 'Playfair Display', serif; color: #3e2f27;">
+        <%= quote.content %>
+      </p>
+
+      <p class="quote-author" style="font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: #5c3b28;">
+        <em><%= quote.author.name %></em>
+        <% if quote.category %> – <%= quote.category.name %><% end %>
+      </p>
+
     </div>
+
   </div>
 </div>

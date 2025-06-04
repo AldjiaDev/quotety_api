@@ -186,30 +186,71 @@ img.shadow {
   padding-left: 1.5rem;
 }
 
-.card blockquote::before {
-  content: "“";
+.styled-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.styled-quote::before {
+  content: "«";
   font-size: 2rem;
+  color: #ff5722;
   position: absolute;
-  left: 0;
-  top: -5px;
-  color: #f17c58;
+  top: -10px;
+  left: -10px;
 }
 
-.card-footer {
-  background-color: #fff8f4;
+.styled-quote::after {
+  content: "»";
+  font-size: 2rem;
+  color: #ff5722;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
 }
 
-.card-body {
-  height: 250px;
+.quote-footer {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-weight: 500;
 }
 
-.citation-card {
-  transition: transform 0.3s ease;
-  border: none;
-  background-color: #fff;
+.card.quote-card {
+  aspect-ratio: 1 / 1;
+  border-radius: 1rem;
+  background-color: #ffeede !important; /* force le fond pêche */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.citation-card:hover {
-  transform: scale(1.03);
+.quote-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%;
 }
 
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #333;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.quote-author {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 0.5rem;
+}
