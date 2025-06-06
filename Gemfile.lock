@@ -350,7 +350,7 @@ DEPENDENCIES
   brakeman
   debug
   dotenv-rails
-  grover
+  grover (~> 1.2.3)
   importmap-rails (~> 2.1)
   jsbundling-rails
   jwt

@@ -13,7 +13,7 @@
     <meta property="og:description" content="<%= yield(:seo_description) || meta_description %>" />
     <meta property="og:url" content="<%= canonical_url %>" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="<%= og_image_url(yield(:og_image_title)) %>" />
+    <meta property="og:image" content="<%= asset_path("about.jpg") %>" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content="Citations inspirantes de Quotety" />
     <meta property="og:image:width" content="1200" />
@@ -25,13 +25,6 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@quotety" />
     <meta name="twitter:creator" content="@quotety" />
-
-    <!-- Favicon & Manifest -->
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#ffeede" />
-    <meta name="msapplication-TileColor" content="#ffeede" />
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
