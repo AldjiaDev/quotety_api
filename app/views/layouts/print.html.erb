@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Impression | <%= @quote&.author&.name || "Citation" %></title>
+    <style>
+      body {
+        background-color: #fffaf3;
+        font-family: 'Playfair Display', serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .print-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .quote-card {
+        background-color: #ffeede;
+        border-radius: 1.5rem;
+        border: 2px dashed #f17c58;
+        padding: 3rem;
+        max-width: 600px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .quote-text {
+        font-size: 1.5rem;
+        font-style: italic;
+        color: #3e2f27;
+        margin-bottom: 2rem;
+      }
+
+      .quote-author {
+        font-family: 'Dancing Script', cursive;
+        font-size: 1.3rem;
+        color: #5c3b28;
+      }
+
+      @media print {
+        body {
+          -webkit-print-color-adjust: exact;
+        }
+
+        .quote-card {
+          box-shadow: none;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
+

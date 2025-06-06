@@ -1,0 +1,11 @@
+<div class="print-container">
+  <div class="quote-card">
+    <blockquote>
+      <p class="quote-text">« <%= @quote.content %> »</p>
+      <footer class="quote-author">
+        — <%= @quote.author.name %>
+        <% if @quote.category %> | <%= @quote.category.name %><% end %>
+      </footer>
+    </blockquote>
+  </div>
+</div>

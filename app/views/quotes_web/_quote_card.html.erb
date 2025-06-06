@@ -23,7 +23,7 @@
       <% if current_user %>
       <%= button_to "❤️", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
       <% end %>
-      <%= link_to "🖨", "#", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer" %>
+      <%= link_to "🖨", print_quote_path(quote), target: "_blank", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer cette citation" %>
       <%= link_to "📤", "#", class: "btn btn-sm btn-outline-primary rounded-pill", title: "Partager" %>
     </div>
   </div>

@@ -18,7 +18,11 @@ class QuotesWebController < ApplicationController
     end
   end
 
-
+  def print
+    @quote = Quote.find(params[:id])
+    render layout: "print"
+  end
+  
   def search
   query = "%#{params[:q]}%".downcase
 
