@@ -1,26 +1,31 @@
-<h1>Créer un compte</h1>
+<div class="container py-5" style="max-width: 600px;">
+  <div class="card shadow-sm p-4 border-0" style="background-color: #fffaf3; border-radius: 1rem;">
+    <h2 class="text-center fw-bold mb-4 text-primary">Créer un compte</h2>
 
-<%= form_with model: @user, url: register_path do |form| %>
-  <div class="mb-3">
-    <%= form.label :username %>
-    <%= form.text_field :username, class: "form-control" %>
+    <%= form_with url: register_path, scope: :user, class: "needs-validation", local: true do |form| %>
+      <div class="mb-3">
+        <%= form.label :username, "Nom d'utilisateur", class: "form-label fw-semibold" %>
+        <%= form.text_field :username, class: "form-control rounded-pill px-3", placeholder: "ex: marie_du_75", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :email, "Email", class: "form-label fw-semibold" %>
+        <%= form.email_field :email, class: "form-control rounded-pill px-3", placeholder: "ex: marie@example.com", required: true %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :password, "Mot de passe", class: "form-label fw-semibold" %>
+        <%= form.password_field :password, class: "form-control rounded-pill px-3", placeholder: "••••••••", required: true %>
+      </div>
+
+      <div class="text-center mt-4">
+        <%= form.submit "Créer un compte", class: "btn btn-primary rounded-pill px-4 py-2" %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-3">
+      <small class="text-muted">Déjà un compte ? <%= link_to "Connexion", login_path, class: "text-decoration-none text-primary fw-semibold" %></small>
+    </div>
   </div>
-
-  <div class="mb-3">
-    <%= form.label :email %>
-    <%= form.email_field :email, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :password %>
-    <%= form.password_field :password, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, class: "form-control" %>
-  </div>
-
-  <%= form.submit "Créer mon compte", class: "btn btn-primary" %>
-<% end %>
+</div>
 
