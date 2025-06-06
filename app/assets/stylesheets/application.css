@@ -273,3 +273,20 @@ img.shadow {
   color: #444;
   margin-top: 0.5rem;
 }
+
+.author-card {
+  background-color: #ffeede !important;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.author-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.author-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
