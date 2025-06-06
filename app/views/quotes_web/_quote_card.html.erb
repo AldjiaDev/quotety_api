@@ -1,9 +1,9 @@
 <div class="col-12 col-sm-6 col-lg-4 mb-4">
-  <div class="card text-center shadow-sm p-4 d-flex justify-content-center align-items-center"
+  <div class="card text-center shadow-sm d-flex flex-column justify-content-between align-items-center"
        style="aspect-ratio: 1 / 1; background-color: #ffeede; border-radius: 1rem;">
 
-    <div class="d-flex flex-column justify-content-center align-items-center h-100 w-100 text-center">
-
+    <!-- Contenu principal -->
+    <div class="d-flex flex-column justify-content-center align-items-center h-100 w-100 text-center p-4">
       <div class="quote-icon mb-3">
         <i class="bi bi-quote fs-2 text-info"></i>
       </div>
@@ -16,8 +16,15 @@
         <em><%= quote.author.name %></em>
         <% if quote.category %> – <%= quote.category.name %><% end %>
       </p>
-
     </div>
 
+    <!-- Boutons d'action -->
+    <div class="pb-3 d-flex justify-content-around w-100 px-4">
+      <% if current_user %>
+      <%= button_to "❤️", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
+      <% end %>
+      <%= link_to "🖨", "#", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer" %>
+      <%= link_to "📤", "#", class: "btn btn-sm btn-outline-primary rounded-pill", title: "Partager" %>
+    </div>
   </div>
 </div>
