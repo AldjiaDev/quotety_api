@@ -12,10 +12,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    if current_user
+      @user = current_user
+    else
+      redirect_to login_path, alert: "Vous devez être connecté pour accéder à votre profil."
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 end
-
