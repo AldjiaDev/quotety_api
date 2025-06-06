@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@500&display=swap');
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 800px;
+        height: 800px;
+        background-color: #ffeede;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Playfair Display', serif;
+        color: #3e2f27;
+      }
+
+      .quote-box {
+        background-color: #fff7ef;
+        border-radius: 2rem;
+        padding: 60px;
+        text-align: center;
+        width: 90%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .quote-icon {
+        font-size: 50px;
+        color: #f17c58;
+        margin-bottom: 20px;
+      }
+
+      .quote-text {
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 30px;
+      }
+
+      .quote-author {
+        font-size: 24px;
+        font-family: 'Dancing Script', cursive;
+        color: #5c3b28;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="quote-box">
+      <div class="quote-icon">❝</div>
+      <div class="quote-text">« <%= @title %> »</div>
+      <div class="quote-author"><%= @description %></div>
+    </div>
+  </body>
+</html>

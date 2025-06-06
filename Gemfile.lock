@@ -109,6 +109,8 @@ GEM
     ffi (1.17.2-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    grover (1.2.3)
+      nokogiri (~> 1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.1.0)
@@ -348,6 +350,7 @@ DEPENDENCIES
   brakeman
   debug
   dotenv-rails
+  grover
   importmap-rails (~> 2.1)
   jsbundling-rails
   jwt

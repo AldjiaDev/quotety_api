@@ -1,0 +1,2 @@
+module OgImagesHelper
+end
