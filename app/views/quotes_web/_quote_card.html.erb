@@ -21,7 +21,11 @@
     <!-- Boutons d'action -->
     <div class="pb-3 d-flex justify-content-around w-100 px-4">
       <% if current_user %>
-        <%= button_to "❤️ J'aime", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
+      <% if current_user.favorite_quotes.exists?(quote.id) %>
+      <%= button_to "❌ Supprimer", remove_favorite_path(quote), method: :delete, class: "btn btn-sm btn-outline-danger rounded-pill", data: { confirm: "Retirer cette citation des favoris ?" }, title: "Retirer des favoris" %>
+      <% else %>
+       <%= button_to "❤️ J'aime", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
+      <% end %>
       <% end %>
       <%= link_to "🖨 Imprimer", print_quote_path(quote), target: "_blank", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer cette citation" %>
       <%= link_to "📤 Envoyer", "#",
