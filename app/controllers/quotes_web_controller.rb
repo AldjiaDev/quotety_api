@@ -24,7 +24,7 @@ class QuotesWebController < ApplicationController
   end
 
   def show
-    @quote = Quote.includes(:author, :category).find(params[:id])
+    @quote = Quote.find(params[:id])
   end
 
   def search

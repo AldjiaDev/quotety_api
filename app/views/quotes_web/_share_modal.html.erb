@@ -1,0 +1,20 @@
+<div class="modal fade" id="shareModal-<%= quote.id %>" tabindex="-1" aria-labelledby="shareModalLabel-<%= quote.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shareModalLabel-<%= quote.id %>">Partager la citation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-2">Copiez le lien ci-dessous pour partager cette citation :</p>
+        <div class="input-group">
+          <input type="text" id="share-link-<%= quote.id %>" class="form-control" value="<%= quote_url(quote) %>" readonly>
+          <button class="btn btn-outline-secondary" type="button"
+                  onclick="navigator.clipboard.writeText(document.getElementById('share-link-<%= quote.id %>').value)">
+            Copier
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
