@@ -22,7 +22,11 @@ class QuotesWebController < ApplicationController
     @quote = Quote.find(params[:id])
     render layout: "print"
   end
-  
+
+  def show
+    @quote = Quote.includes(:author, :category).find(params[:id])
+  end
+
   def search
   query = "%#{params[:q]}%".downcase
 

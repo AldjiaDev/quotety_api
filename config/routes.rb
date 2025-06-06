@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "categories/:category", to: "quotes_web#category", as: :category_quotes
   get "about", to: "quotes_web#about", as: :about
   get "quotes/:id/print", to: "quotes_web#print", as: :print_quote
+  get "quotes/:id", to: "quotes_web#show", as: :quote
+
 
 
   # Favoris

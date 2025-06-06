@@ -21,10 +21,32 @@
     <!-- Boutons d'action -->
     <div class="pb-3 d-flex justify-content-around w-100 px-4">
       <% if current_user %>
-      <%= button_to "❤️", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
+        <%= button_to "❤️", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
       <% end %>
       <%= link_to "🖨", print_quote_path(quote), target: "_blank", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer cette citation" %>
-      <%= link_to "📤", "#", class: "btn btn-sm btn-outline-primary rounded-pill", title: "Partager" %>
+      <%= link_to "📤", "#",
+          class: "btn btn-sm btn-outline-primary rounded-pill",
+          data: { bs_toggle: "modal", bs_target: "#shareModal-#{quote.id}" },
+          title: "Partager cette citation" %>
+    </div>
+  </div>
+
+  <!-- Modale de partage -->
+  <div class="modal fade" id="shareModal-<%= quote.id %>" tabindex="-1" aria-labelledby="shareModalLabel-<%= quote.id %>" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow rounded">
+        <div class="modal-header">
+          <h5 class="modal-title" id="shareModalLabel-<%= quote.id %>">Partager cette citation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <p>Copiez ce lien :</p>
+          <div class="input-group">
+            <input type="text" class="form-control" id="share-link-<%= quote.id %>" value="<%= quote_url(quote) %>" readonly>
+            <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(document.getElementById('share-link-<%= quote.id %>').value)">Copier</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

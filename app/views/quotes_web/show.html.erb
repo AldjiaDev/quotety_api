@@ -1,0 +1,23 @@
+<div class="container py-5">
+  <div class="card text-center shadow-sm mx-auto p-5" style="max-width: 600px; background-color: #ffeede; border-radius: 1rem;">
+    <blockquote class="blockquote mb-4">
+      <p class="fs-4 fw-semibold" style="font-family: 'Playfair Display', serif;">
+        « <%= @quote.content %> »
+      </p>
+      <footer class="blockquote-footer mt-3">
+        <%= @quote.author.name %>
+        <% if @quote.category %> – <%= @quote.category.name %><% end %>
+      </footer>
+    </blockquote>
+
+    <div class="mt-4 d-flex justify-content-center gap-3">
+      <% if current_user %>
+        <%= button_to "❤️", favorites_path(quote_id: @quote.id), method: :post, class: "btn btn-sm btn-outline-danger" %>
+      <% end %>
+      <%= link_to "🖨 Imprimer", print_quote_path(@quote), class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to "📤 Partager", "#", class: "btn btn-sm btn-outline-primary", data: { bs_toggle: "modal", bs_target: "#shareModal-#{@quote.id}" } %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "quotes_web/share_modal", locals: { quote: @quote } %>
