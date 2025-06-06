@@ -21,10 +21,10 @@
     <!-- Boutons d'action -->
     <div class="pb-3 d-flex justify-content-around w-100 px-4">
       <% if current_user %>
-        <%= button_to "❤️", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
+        <%= button_to "❤️ J'aime", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
       <% end %>
-      <%= link_to "🖨", print_quote_path(quote), target: "_blank", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer cette citation" %>
-      <%= link_to "📤", "#",
+      <%= link_to "🖨 Imprimer", print_quote_path(quote), target: "_blank", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer cette citation" %>
+      <%= link_to "📤 Envoyer", "#",
           class: "btn btn-sm btn-outline-primary rounded-pill",
           data: { bs_toggle: "modal", bs_target: "#shareModal-#{quote.id}" },
           title: "Partager cette citation" %>
