@@ -1,10 +1,14 @@
-<div class="container py-5">
-  <%= render "login_form" %>
+<div class="container py-5" style="max-width: 500px;">
+  <div class="card shadow-sm p-4 border-0" style="background-color: #fffaf3; border-radius: 1rem;">
+    <h2 class="text-center fw-bold mb-4 text-primary">Connexion</h2>
 
-  <div class="text-center mt-3">
-    <small class="text-muted">
-      Pas encore de compte ?
-      <%= link_to "Créer un compte", register_path, class: "text-decoration-none text-primary fw-semibold" %>
-    </small>
+    <%= render "login_form" %>
+
+    <div class="text-center mt-3">
+      <small class="text-muted">
+        Pas encore de compte ?
+        <%= link_to "Créer un compte", register_path, class: "text-decoration-none text-primary fw-semibold" %>
+      </small>
+    </div>
   </div>
 </div>

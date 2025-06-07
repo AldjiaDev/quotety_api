@@ -1,21 +1,19 @@
-<div class="card p-4 shadow-sm" style="background-color: #fffaf3; border-radius: 1rem; max-width: 400px; margin: auto;">
-  <h3 class="text-center mb-4 text-primary">Connexion</h3>
+<%= form_with url: login_path, method: :post, local: true, class: "needs-validation" do |form| %>
+  <div class="mb-3">
+    <%= form.label :email, "Adresse email", class: "form-label fw-semibold" %>
+    <%= form.email_field :email, class: "form-control rounded-pill px-3", placeholder: "ex: marie@example.com", required: true %>
+  </div>
 
-  <%= form_with url: login_path, local: true do |form| %>
-    <div class="mb-3">
-      <%= form.label :email, class: "form-label fw-semibold" %>
-      <%= form.email_field :email, class: "form-control", required: true %>
-    </div>
+  <div class="mb-2">
+    <%= form.label :password, "Mot de passe", class: "form-label fw-semibold" %>
+    <%= form.password_field :password, class: "form-control rounded-pill px-3", placeholder: "••••••••", required: true %>
+  </div>
 
-    <div class="mb-2">
-      <%= form.label :password, class: "form-label fw-semibold" %>
-      <%= form.password_field :password, class: "form-control", required: true %>
-    </div>
+  <div class="text-end mb-3">
+    <%= link_to "Mot de passe oublié ?", new_password_reset_path, class: "small text-decoration-none text-primary" %>
+  </div>
 
-    <div class="text-end mb-3">
-      <%= link_to "Mot de passe oublié ?", forgot_password_path, class: "small text-decoration-none text-primary" %>
-    </div>
-
-    <%= form.submit "Se connecter", class: "btn btn-primary w-100" %>
-  <% end %>
-</div>
+  <div class="text-center mt-4">
+    <%= form.submit "Se connecter", class: "btn btn-primary rounded-pill px-4 py-2" %>
+  </div>
+<% end %>

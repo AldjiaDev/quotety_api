@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "password_resets/new"
+  get "password_resets/create"
   get "passwords/new"
   get "passwords/create"
   get "og_images/show"
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
 
   get "/password/forgot", to: "passwords#new", as: :forgot_password
   post "/password/forgot", to: "passwords#create"
+  resources :password_resets, only: [:new, :create]
+
 
 
 
