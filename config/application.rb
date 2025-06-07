@@ -21,6 +21,8 @@ Bundler.require(*Rails.groups)
 module QuotetyApi
   class Application < Rails::Application
     config.load_defaults 7.2
+    config.i18n.default_locale = :fr
+
 
     config.autoload_lib(ignore: %w[assets tasks])
 
@@ -36,4 +38,3 @@ module QuotetyApi
     # config.time_zone = "Paris"
   end
 end
-

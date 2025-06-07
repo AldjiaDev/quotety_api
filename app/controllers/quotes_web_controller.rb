@@ -6,8 +6,9 @@ class QuotesWebController < ApplicationController
 
 
   def all
-    @quotes = Quote.includes(:author, :category).all
+    @quotes = Quote.includes(:author).order(created_at: :desc).page(params[:page]).per(15)
   end
+
 
   def category
   @category = Category.find_by(slug: params[:category])

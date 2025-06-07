@@ -8,6 +8,10 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
       <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
     </div>
+
+    <div class="mt-5 d-flex justify-content-center">
+      <%= paginate @quotes %>
+    </div>
   <% else %>
     <p class="text-center text-muted">Aucune citation à afficher.</p>
   <% end %>
