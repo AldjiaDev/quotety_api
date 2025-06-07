@@ -1,15 +1,15 @@
 <div class="container py-5" style="max-width: 500px;">
-  <div class="card shadow-sm p-4 border-0" style="background-color: #fffaf3; border-radius: 1rem;">
-    <h2 class="text-center fw-bold mb-4 text-primary">Réinitialiser le mot de passe</h2>
+  <div class="card p-4 shadow-sm" style="background-color: #fffaf3; border-radius: 1rem;">
+    <h2 class="text-center text-primary fw-bold mb-4">Réinitialiser le mot de passe</h2>
 
     <%= form_with url: password_resets_path, method: :post, local: true do |form| %>
       <div class="mb-3">
-        <%= form.label :email, "Adresse email", class: "form-label fw-semibold" %>
-        <%= form.email_field :email, class: "form-control rounded-pill px-3", placeholder: "ex: vous@example.com", required: true %>
+        <%= form.label :email, "Votre adresse email", class: "form-label fw-semibold" %>
+        <%= form.email_field :email, class: "form-control rounded-pill px-3", placeholder: "ex: marie@example.com", required: true %>
       </div>
 
-      <div class="text-center mt-4">
-        <%= form.submit "Envoyer le lien de réinitialisation", class: "btn btn-primary rounded-pill px-4 py-2" %>
+      <div class="text-center">
+        <%= form.submit "Envoyer les instructions", class: "btn btn-primary rounded-pill px-4 py-2" %>
       </div>
     <% end %>
   </div>

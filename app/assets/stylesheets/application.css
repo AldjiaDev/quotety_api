@@ -133,6 +133,8 @@ a:hover {
   color: #3e2f27;
   border-top: 1px solid #f3d8c2;
   font-family: 'Playfair Display', serif;
+  position: sticky;
+  bottom: 0;
 }
 
 .site-footer a {
@@ -289,4 +291,3 @@ img.shadow {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
-

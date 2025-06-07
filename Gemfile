@@ -14,6 +14,7 @@ gem "stimulus-rails"
 gem "kaminari", "~> 1.2"
 gem "rspec-rails", "~> 8.0"
 gem "grover", "~> 1.2.3"
+gem "letter_opener", "~> 1.0"
 
 # Utilisé uniquement en développement et test
 group :development, :test do
