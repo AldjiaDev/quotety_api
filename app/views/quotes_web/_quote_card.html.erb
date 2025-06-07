@@ -8,30 +8,28 @@
         <i class="bi bi-quote fs-2 text-info"></i>
       </div>
 
-      <p class="quote-text mb-4 px-3" style="font-size: 1.2rem; font-style: italic; font-family: 'Playfair Display', serif; color: #3e2f27;">
-        <%= quote.content %>
+      <p class="quote-text mb-4 px-3 fw-bold" style="font-size: 1.6rem; font-family: 'Playfair Display', serif; color: #3e2f27;">
+        « <%= quote.content %> »
       </p>
 
       <p class="quote-author" style="font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: #5c3b28;">
         <em><%= quote.author.name %></em>
-        <% if quote.category %> – <%= quote.category.name %><% end %>
       </p>
     </div>
 
     <!-- Boutons d'action -->
     <div class="pb-3 d-flex justify-content-around w-100 px-4">
       <% if current_user %>
-      <% if current_user.favorite_quotes.exists?(quote.id) %>
-      <%= button_to "❌ Supprimer", remove_favorite_path(quote), method: :delete, class: "btn btn-sm btn-outline-danger rounded-pill", data: { confirm: "Retirer cette citation des favoris ?" }, title: "Retirer des favoris" %>
-      <% else %>
-       <%= button_to "❤️ J'aime", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
+        <% if current_user.favorite_quotes.exists?(quote.id) %>
+          <%= button_to "❌ Supprimer", remove_favorite_path(quote), method: :delete, class: "btn btn-sm btn-outline-danger rounded-pill", data: { confirm: "Retirer cette citation des favoris ?" }, title: "Retirer des favoris" %>
+        <% else %>
+          <%= button_to "❤️ J'aime", favorites_path(quote_id: quote.id), method: :post, class: "btn btn-sm btn-outline-danger rounded-pill", title: "Ajouter aux favoris" %>
+        <% end %>
       <% end %>
-      <% end %>
+
       <%= link_to "🖨 Imprimer", print_quote_path(quote), target: "_blank", class: "btn btn-sm btn-outline-secondary rounded-pill", title: "Imprimer cette citation" %>
-      <%= link_to "📤 Envoyer", "#",
-          class: "btn btn-sm btn-outline-primary rounded-pill",
-          data: { bs_toggle: "modal", bs_target: "#shareModal-#{quote.id}" },
-          title: "Partager cette citation" %>
+
+      <%= link_to "📤 Envoyer", "#", class: "btn btn-sm btn-outline-primary rounded-pill", data: { bs_toggle: "modal", bs_target: "#shareModal-#{quote.id}" }, title: "Partager cette citation" %>
     </div>
   </div>
 
