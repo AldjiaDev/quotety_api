@@ -80,7 +80,6 @@
     </nav>
 
     <!-- ✅ Flash messages -->
-    <div class="container mt-3">
       <% flash.each do |type, message| %>
         <div class="alert alert-<%= type == "alert" ? "danger" : "success" %> alert-dismissible fade show" role="alert">
           <%= message %>
