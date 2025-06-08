@@ -291,3 +291,16 @@ img.shadow {
   transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
+
+.quote-hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+}
+
+.quote-hero h1,
+.quote-hero p {
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
