@@ -45,10 +45,10 @@ Rails.application.routes.draw do
 
   # ✅ Administration
   get "admin", to: "admin_dashboard#index", as: :admin_dashboard
-  namespace :admin do
-    resources :quotes, only: [:index, :new, :create]
-    resources :authors, only: [:new, :create]
-    resources :categories, only: [:new, :create]
+    namespace :admin do
+      resources :quotes, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :authors, only: [:new, :create]
+      resources :categories, only: [:new, :create]
   end
 
   # ✅ API JSON

@@ -8,6 +8,7 @@
         <th>Auteur</th>
         <th>Catégorie</th>
         <th>Date d'ajout</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,14 @@
           <td><%= quote.author&.name %></td>
           <td><%= quote.category&.name %></td>
           <td><%= quote.created_at.strftime("%d/%m/%Y") %></td>
+         <<td class="text-nowrap">
+            <%= link_to "✏️", edit_admin_quote_path(quote), class: "btn btn-sm btn-outline-secondary me-1" %>
+            <%= button_to "🗑", admin_quote_path(quote),
+                method: :delete,
+                form: { class: "d-inline" },
+                data: { confirm: "Supprimer cette citation ?" },
+                class: "btn btn-sm btn-outline-danger" %>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -4,4 +4,6 @@ class Quote < ApplicationRecord
 
   has_many :favorites
   has_many :favorited_by, through: :favorites, source: :user
+
+  attr_accessor :author_name
 end
