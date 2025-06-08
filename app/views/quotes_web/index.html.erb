@@ -1,13 +1,12 @@
 <!-- HERO SECTION -->
 <div class="hero-banner text-white d-flex align-items-center" style="background-image: url('<%= asset_path("hero.jpg") %>'); height: 450px; background-size: cover; background-position: center;">
-  <div class="container z-2">
+  <div class="container mt-0 pt-0 z-2">
     <div class="row">
       <div class="col-md-6">
         <h1 class="display-4 fw-bold">Trouvez l'inspiration.<br><span class="text-gradient">Une citation à la fois.</span></h1>
         <p class="lead">Explorez des pensées puissantes, partagez des mots qui touchent l'âme, imprimez ce qui vous élève.</p>
         <div class="d-flex gap-2">
           <%= link_to "Explorer les citations", quotes_path, class: "btn btn-primary" %>
-          <%= link_to "Citation aléatoire", "#", class: "btn btn-outline-primary" %>
         </div>
       </div>
     </div>
