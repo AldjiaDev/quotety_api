@@ -114,7 +114,12 @@
           <li><%= link_to "Citations", quotes_path, class: "text-decoration-none text-primary" %></li>
           <li><%= link_to "Auteurs", authors_path, class: "text-decoration-none text-primary" %></li>
           <li><%= link_to "À propos", about_path, class: "text-decoration-none text-primary" %></li>
-          <li><%= link_to "Contact", "#", class: "text-decoration-none text-primary" %></li>
+          <li>
+              <%= mail_to "contact.quotety@gmail.com", "✉️ contact.quotety@gmail.com",
+                  class: "text-decoration-none text-primary fw-semibold" %>
+          </li>
+
+
         </ul>
       </div>
 
