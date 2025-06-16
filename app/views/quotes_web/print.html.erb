@@ -1,10 +1,17 @@
-<div class="print-container">
-  <div class="quote-card">
-    <blockquote>
-      <p class="quote-text">« <%= @quote.content %> »</p>
-      <footer class="quote-author">
+<!-- Bouton en haut à droite -->
+<div class="print-header" style="text-align: right; padding: 1rem;">
+  <a href="#" onclick="window.print();" class="print-button" style="text-decoration: none; color: #F4A261; font-weight: 600;">🖨️ Imprimer cette citation</a>
+</div>
+
+<!-- Conteneur A4 -->
+<div class="print-container" style="width: 210mm; height: 297mm; margin: 0 auto; display: flex; align-items: center; justify-content: center; padding: 2rem; background-color: #FEF9F3;">
+  <div class="quote-card" style="text-align: center; max-width: 80%; font-family: 'Poppins', sans-serif;">
+    <blockquote style="border: none; margin: 0;">
+      <p class="quote-text" style="font-size: 1.8rem; font-weight: bold; color: #2E2E2E;">
+        « <%= @quote.content %> »
+      </p>
+      <footer class="quote-author" style="margin-top: 1rem; font-size: 1.2rem; color: #A3B18A;">
         — <%= @quote.author.name %>
-        <% if @quote.category %> | <%= @quote.category.name %><% end %>
       </footer>
     </blockquote>
   </div>

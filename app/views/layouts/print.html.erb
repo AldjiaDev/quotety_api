@@ -1,54 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Impression | <%= @quote&.author&.name || "Citation" %></title>
+    <meta charset="utf-8" />
+    <title>Impression | Quotety</title>
     <style>
-      body {
-        background-color: #fffaf3;
-        font-family: 'Playfair Display', serif;
+      @page {
+        size: A4 portrait;
+        margin: 2.5cm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
         margin: 0;
         padding: 0;
+        font-family: 'Georgia', serif;
+        background-color: #FEF9F3;
+        color: #2E2E2E;
       }
 
       .print-container {
-        height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-      }
-
-      .quote-card {
-        background-color: #ffeede;
-        border-radius: 1.5rem;
-        border: 2px dashed #f17c58;
-        padding: 3rem;
-        max-width: 600px;
+        height: 100vh;
+        padding: 0 2rem;
         text-align: center;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
       }
 
       .quote-text {
-        font-size: 1.5rem;
-        font-style: italic;
-        color: #3e2f27;
+        font-size: 2.4rem;
+        font-weight: bold;
         margin-bottom: 2rem;
       }
 
       .quote-author {
-        font-family: 'Dancing Script', cursive;
-        font-size: 1.3rem;
-        color: #5c3b28;
+        font-size: 1.5rem;
+        font-style: italic;
+        color: #A3B18A;
+      }
+
+      .print-button {
+        display: block;
+        margin: 1.5rem auto 0;
+        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+        background-color: #F4A261;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .print-button:hover {
+        background-color: #e26b00;
       }
 
       @media print {
-        body {
-          -webkit-print-color-adjust: exact;
-        }
-
-        .quote-card {
-          box-shadow: none;
-          border: none;
+        .print-button {
+          display: none;
         }
       }
     </style>
@@ -57,4 +71,3 @@
     <%= yield %>
   </body>
 </html>
-

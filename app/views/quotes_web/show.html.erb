@@ -14,7 +14,7 @@
       <% if current_user %>
         <%= button_to "❤️", favorites_path(quote_id: @quote.id), method: :post, class: "btn btn-sm btn-outline-danger" %>
       <% end %>
-      <%= link_to "🖨 Imprimer", print_quote_path(@quote), class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to "🖨️ Imprimer", print_quote_path(quote), target: "_blank", class: "btn btn-outline-secondary" %>
       <%= link_to "📤 Partager", "#", class: "btn btn-sm btn-outline-primary", data: { bs_toggle: "modal", bs_target: "#shareModal-#{@quote.id}" } %>
     </div>
   </div>
