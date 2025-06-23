@@ -310,6 +310,8 @@ GEM
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    sitemap_generator (6.3.0)
+      builder (~> 3.0)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -374,6 +376,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   sassc-rails
   simple_form
+  sitemap_generator
   sqlite3 (>= 1.4)
   stimulus-rails
   tzinfo-data

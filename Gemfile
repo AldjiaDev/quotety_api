@@ -30,5 +30,10 @@ group :production do
   gem "pg"
 end
 
+group :development do
+  gem 'sitemap_generator'
+end
+
+
 # Pour Windows ou JRuby uniquement
 gem "tzinfo-data", platforms: %i[windows jruby]
