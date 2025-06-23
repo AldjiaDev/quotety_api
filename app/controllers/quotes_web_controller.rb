@@ -1,9 +1,9 @@
 class QuotesWebController < ApplicationController
-  def index
+   def index
     @quotes = Quote.includes(:author, :category).limit(6)
     @categories = Category.all.map { |category| { name: category.name, slug: category.slug } }
-  end
-
+    @popular_authors = Author.where(popular: true).limit(6)
+   end
 
   def all
     @quotes = Quote.includes(:author).order(created_at: :desc).page(params[:page]).per(15)

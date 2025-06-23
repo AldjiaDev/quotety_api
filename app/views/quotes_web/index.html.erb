@@ -52,6 +52,34 @@
   </div>
 </div>
 
+<!-- POPULAR AUTHORS -->
+<% if @popular_authors.present? %>
+  <div class="bg-white py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold fs-3">👥 Auteur·ice·s populaires</h2>
+        <p class="text-muted">Les voix les plus consultées par notre communauté.</p>
+      </div>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        <% @popular_authors.each do |author| %>
+          <div class="col">
+            <%= link_to author_quotes_path(author), class: "text-decoration-none" do %>
+              <div class="card h-100 border-0 shadow-sm hover-shadow rounded-4 p-4" style="background-color: #fffaf3;">
+                <h5 class="fw-bold mb-1" style="font-family: 'Playfair Display', serif;"><%= author.name %></h5>
+                <p class="text-muted small mb-0">
+                  <%= pluralize(author.quotes.count, "citation") %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
 <!-- ALL QUOTES PREVIEW -->
 <div class="container py-5">
   <div class="text-center mb-5">
