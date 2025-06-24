@@ -1,4 +1,4 @@
-<!-- 🔍 BALISAGE STRUCTURÉ JSON-LD -->
+<!-- ✅ BALISAGE STRUCTURÉ JSON-LD -->
 <script type="application/ld+json">
 <%= raw({
   "@context": "https://schema.org",
@@ -14,27 +14,49 @@
 }.to_json) %>
 </script>
 
-<!-- 📝 CITATION AFFICHÉE -->
+<!-- ✅ CONTENU PRINCIPAL -->
 <div class="container py-5">
+  <!-- H1 SEO -->
+  <h1 class="text-center fw-bold mb-5" style="font-family: 'Playfair Display', serif;">
+    Citation de <%= @quote.author.name %>
+  </h1>
+
+  <!-- Citation mise en avant -->
   <div class="card text-center shadow-sm mx-auto p-5" style="max-width: 600px; background-color: #ffeede; border-radius: 1rem;">
     <blockquote class="blockquote mb-4">
       <p class="fs-4 fw-semibold" style="font-family: 'Playfair Display', serif;">
         « <%= @quote.content %> »
       </p>
       <footer class="blockquote-footer mt-3">
-        <%= @quote.author.name %>
-        <% if @quote.category %> – <%= @quote.category.name %><% end %>
+        <%= link_to @quote.author.name, author_quotes_path(@quote.author), class: "link-secondary" %>
+        <% if @quote.category %> –
+          <%= link_to @quote.category.name, category_quotes_path(category: @quote.category.slug), class: "link-secondary" %>
+        <% end %>
       </footer>
     </blockquote>
 
+    <!-- Boutons d'action -->
     <div class="mt-4 d-flex justify-content-center gap-3">
       <% if current_user %>
-        <%= button_to "❤️", favorites_path(quote_id: @quote.id), method: :post, class: "btn btn-sm btn-outline-danger" %>
+        <%= button_to "❤️", favorites_path(quote_id: @quote.id), method: :post, class: "btn btn-sm btn-outline-danger", title: "Ajouter aux favoris" %>
       <% end %>
-      <%= link_to "🖨️ Imprimer", print_quote_path(@quote), target: "_blank", class: "btn btn-outline-secondary" %>
-      <%= link_to "📤 Partager", "#", class: "btn btn-sm btn-outline-primary", data: { bs_toggle: "modal", bs_target: "#shareModal-#{@quote.id}" } %>
+      <%= link_to "🖨️ Imprimer", print_quote_path(@quote), target: "_blank", class: "btn btn-outline-secondary", title: "Imprimer cette citation" %>
+      <%= link_to "📤 Partager", "#", class: "btn btn-sm btn-outline-primary", title: "Partager cette citation", data: { bs_toggle: "modal", bs_target: "#shareModal-#{@quote.id}" } %>
     </div>
+  </div>
+
+  <!-- Liens contextuels -->
+  <div class="text-center mt-5">
+    <h2 class="h5 mb-3">🔎 Explorer plus</h2>
+    <p>
+      <%= link_to "Voir toutes les citations de #{@quote.author.name}", author_quotes_path(@quote.author), class: "btn btn-link" %>
+      <% if @quote.category %>
+        ou
+        <%= link_to "plus de citations dans « #{@quote.category.name} »", category_quotes_path(category: @quote.category.slug), class: "btn btn-link" %>
+      <% end %>
+    </p>
   </div>
 </div>
 
+<!-- ✅ Modal de partage -->
 <%= render partial: "quotes_web/share_modal", locals: { quote: @quote } %>

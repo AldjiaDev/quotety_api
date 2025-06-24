@@ -1,25 +1,9 @@
-<div class="container py-5">
-  <h2 class="fw-bold mb-5 text-center" style="font-family: 'Playfair Display', serif;">
-    Citations de <%= @author.name %>
-  </h2>
-
-  <% if @quotes.any? %>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
-    </div>
-  <% else %>
-    <div class="alert alert-warning text-center">
-      Aucune citation disponible pour cet auteur.
-    </div>
-  <% end %>
-</div>
-
-<!-- ✅ Balise JSON-LD pour Schema.org -->
+<!-- ✅ BALISE JSON-LD pour Schema.org -->
 <script type="application/ld+json">
 <%= raw({
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "#{@author.name}",
+  "name": @author.name,
   "url": request.original_url,
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -27,3 +11,33 @@
   }
 }.to_json) %>
 </script>
+
+<!-- ✅ CONTENU DE LA PAGE -->
+<div class="container py-5">
+
+  <!-- 🎯 Titre principal (H1) -->
+  <h1 class="fw-bold mb-5 text-center" style="font-family: 'Playfair Display', serif;">
+    Citations de <%= author.name %>
+  </h1>
+
+  <% if @quotes.any? %>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+      <!-- 🧠 Liste de citations -->
+      <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
+
+    </div>
+  <% else %>
+    <div class="alert alert-warning text-center mt-5">
+      Aucune citation disponible pour cet auteur.
+    </div>
+  <% end %>
+
+  <!-- 🔗 Lien vers la page Catégorie (optionnel si la plupart des citations partagent une catégorie) -->
+  <% if @quotes.map(&:category).uniq.length == 1 && @quotes.first&.category %>
+    <div class="text-center mt-5">
+      <%= link_to "Explorer plus de citations sur le thème “#{@quotes.first.category.name}”", category_quotes_path(category: @quotes.first.category.slug), class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
+
+</div>

@@ -1,34 +1,51 @@
+<!-- ✅ Structured Data JSON-LD (Organisation) -->
+<script type="application/ld+json">
+<%= raw({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Quotety",
+  "url": request.original_url,
+  "logo": image_url("favicon.png"),
+  "description": "Quotety est une plateforme dédiée aux citations inspirantes, littéraires et philosophiques.",
+  "sameAs": [
+    "https://www.instagram.com/quotety",
+    "https://www.facebook.com/quotety",
+    "https://twitter.com/quotety"
+  ]
+}.to_json) %>
+</script>
+
 <!-- ✅ HEADER / INTRO -->
-<div class="py-5 text-center" style="background-color: #ffeede;">
+<header class="py-5 text-center" style="background-color: #ffeede;">
   <div class="container">
     <h1 class="quotety-logo display-4">Quotety</h1>
     <p class="lead mt-3">Un monde de mots, un souffle d’inspiration pour chaque instant...</p>
   </div>
-</div>
+</header>
 
 <!-- ✅ CITATION CENTRALE -->
-<div class="container my-5">
+<section class="container my-5" aria-labelledby="citation-centrale">
   <div class="row justify-content-center">
     <div class="col-md-10 text-center">
-      <blockquote class="blockquote fs-4 fst-italic text-dark" style="font-family: 'Playfair Display', serif;">
+      <blockquote class="blockquote fs-4 fst-italic text-dark" style="font-family: 'Playfair Display', serif;" id="citation-centrale">
         <p>« Les mots sont, bien sûr, la plus puissante drogue utilisée par l'humanité. »</p>
         <footer class="blockquote-footer mt-2 text-muted">Rudyard Kipling</footer>
       </blockquote>
     </div>
   </div>
-</div>
+</section>
 
 <!-- ✅ CONTENU AVEC IMAGE + TEXTE ENRICHI -->
-<div class="container pb-5">
+<main class="container pb-5" aria-label="À propos de Quotety">
   <div class="row align-items-center">
     <!-- Image -->
     <div class="col-md-6 mb-4 mb-md-0">
-      <%= image_tag "about.jpg", alt: "À propos de Quotety", class: "img-fluid rounded shadow" %>
+      <%= image_tag "about.jpg", alt: "Illustration à propos de Quotety", class: "img-fluid rounded shadow" %>
     </div>
 
     <!-- Texte -->
     <div class="col-md-6">
-      <h2 class="quotety-logo mb-3">Quotety</h2>
+      <h2 class="quotety-logo mb-3">À propos</h2>
 
       <p class="lead mb-3">
         <strong>Quotety</strong> est né d'une conviction simple : les mots justes peuvent transformer un moment ordinaire en une source d'inspiration profonde.
@@ -51,4 +68,4 @@
       </p>
     </div>
   </div>
-</div>
+</main>

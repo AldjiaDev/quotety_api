@@ -1,28 +1,55 @@
 <% if @category %>
+  <!-- 🔍 BALISAGE STRUCTURÉ JSON-LD -->
+  <script type="application/ld+json">
+  <%= raw({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Citations – #{@category.name}",
+    "description": "Citations liées à la catégorie #{@category.name} publiées sur Quotety.",
+    "url": request.original_url,
+    "mainEntity": @quotes.map do |quote|
+      {
+        "@type": "Quotation",
+        "text": quote.content,
+        "author": {
+          "@type": "Person",
+          "name": quote.author.name
+        },
+        "genre": @category.name,
+        "datePublished": quote.created_at.strftime("%Y-%m-%d"),
+        "url": quote_url(quote)
+      }
+    end
+  }.to_json) %>
+  </script>
+
   <!-- ✅ HERO DE LA CATÉGORIE -->
   <div class="category-hero text-center text-dark py-5" style="background-color: #fff4ec;">
     <div class="container">
       <p class="text-uppercase text-danger fw-semibold small mb-2">Catégorie</p>
       <h1 class="display-4 fw-bold mb-4"><%= @category.name %></h1>
+
       <div class="mx-auto" style="max-width: 960px;">
         <%= image_tag "categories/#{@category.slug}.jpg",
-            class: "img-fluid w-100 rounded shadow-sm",
-            style: "height: 300px; object-fit: cover;" %>
+              class: "img-fluid w-100 rounded shadow-sm",
+              style: "height: 300px; object-fit: cover;",
+              alt: "Illustration pour la catégorie #{@category.name}" %>
       </div>
     </div>
   </div>
+
+  <!-- ✅ LISTE DES CITATIONS DE LA CATÉGORIE -->
+  <div class="container py-5">
+    <h2 class="visually-hidden">Citations dans la catégorie <%= @category.name %></h2>
+
+    <% if @quotes.any? %>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
+      </div>
+    <% else %>
+      <div class="alert alert-warning text-center">
+        Aucune citation disponible pour cette catégorie.
+      </div>
+    <% end %>
+  </div>
 <% end %>
-
-<!-- ✅ LISTE DES CITATIONS -->
-<div class="container py-5">
-  <% if @quotes.any? %>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
-    </div>
-  <% else %>
-    <div class="alert alert-warning text-center">
-      Aucune citation disponible pour cette catégorie.
-    </div>
-  <% end %>
-</div>
-

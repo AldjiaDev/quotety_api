@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title><%= meta_title(yield(:seo_title)) %></title>
     <meta name="description" content="<%= meta_description(yield(:seo_description)) %>" />
@@ -49,64 +51,61 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
+    <header>
+      <nav class="navbar navbar-expand-lg shadow-sm sticky-top" style="background-color: #fffaf3; z-index: 1030;">
+        <div class="container">
+          <%= link_to "Quotety", root_path, class: "navbar-brand quotety-logo", aria: { label: "Accueil Quotety" } %>
 
-    <!-- ✅ Navbar -->
-    <nav class="navbar navbar-expand-lg shadow-sm sticky-top" style="background-color: #fffaf3; z-index: 1030;">
-      <div class="container">
-        <a class="navbar-brand quotety-logo" href="/">Quotety</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><%= link_to "Citations", quotes_path, class: "nav-link fw-semibold" %></li>
+              <li class="nav-item"><%= link_to "Auteur.ice.s", authors_path, class: "nav-link fw-semibold" %></li>
+              <% if current_user %>
+                <li class="nav-item"><%= link_to "Favoris", favorites_path, class: "nav-link fw-semibold" %></li>
+              <% end %>
+              <li class="nav-item"><%= link_to "À propos", about_path, class: "nav-link fw-semibold" %></li>
+            </ul>
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><%= link_to "Citations", quotes_path, class: "nav-link fw-semibold" %></li>
-            <li class="nav-item"><%= link_to "Auteur.ice.s", authors_path, class: "nav-link fw-semibold" %></li>
-            <% if current_user %>
-              <li class="nav-item"><%= link_to "Favoris", favorites_path, class: "nav-link fw-semibold" %></li>
+            <%= form_with url: search_quotes_path, method: :get, class: "d-flex me-3", local: true do %>
+              <%= search_field_tag :q, params[:q], placeholder: "Rechercher un auteur", class: "form-control rounded-pill px-3 me-2", aria: { label: "Recherche" } %>
             <% end %>
-            <li class="nav-item"><%= link_to "À propos", about_path, class: "nav-link fw-semibold" %></li>
-          </ul>
 
-          <form class="d-flex me-3" method="get" action="/quotes/search">
-            <input class="form-control rounded-pill px-3 me-2" type="search" name="q" placeholder="Rechercher un auteur" aria-label="Recherche">
-          </form>
-
-          <% if current_user %>
-            <div class="dropdown">
-              <a class="btn btn-outline-secondary dropdown-toggle rounded-pill" href="#" role="button" data-bs-toggle="dropdown">
-                👤 <%= current_user.username %>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><%= link_to "Mon profil", me_path, class: "dropdown-item" %></li>
-                <% if current_user.admin? %>
-                  <li><%= link_to "Administration", admin_quotes_path, class: "dropdown-item text-primary" %></li>
-                <% end %>
-                <%= button_to "Déconnexion", logout_path, method: :delete, class: "dropdown-item text-danger", form: { class: "d-inline" } %>
-              </ul>
-            </div>
-          <% else %>
-            <%= link_to "Connexion", login_path, class: "btn btn-outline-primary rounded-pill" %>
-          <% end %>
+            <% if current_user %>
+              <div class="dropdown">
+                <a class="btn btn-outline-secondary dropdown-toggle rounded-pill" href="#" role="button" data-bs-toggle="dropdown">
+                  👤 <%= current_user.username %>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><%= link_to "Mon profil", me_path, class: "dropdown-item" %></li>
+                  <% if current_user.admin? %>
+                    <li><%= link_to "Administration", admin_quotes_path, class: "dropdown-item text-primary" %></li>
+                  <% end %>
+                  <li><%= button_to "Déconnexion", logout_path, method: :delete, class: "dropdown-item text-danger", form: { class: "d-inline" } %></li>
+                </ul>
+              </div>
+            <% else %>
+              <%= link_to "Connexion", login_path, class: "btn btn-outline-primary rounded-pill" %>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
-    <!-- ✅ Flash messages -->
     <% flash.each do |type, message| %>
       <div class="alert alert-<%= type == "alert" ? "danger" : "success" %> alert-dismissible fade show" role="alert">
         <%= message %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
       </div>
     <% end %>
 
-    <!-- ✅ Contenu principal -->
     <main class="flex-grow-1">
       <%= yield %>
     </main>
 
-    <!-- ✅ Footer -->
     <footer class="site-footer mt-5 pt-5 pb-4" style="background-color: #fffaf3;">
       <div class="container">
         <div class="row">
@@ -114,9 +113,9 @@
             <h2 class="quotety-logo mb-3">Quotety</h2>
             <p class="small text-muted">Des mots qui marquent, des citations qui inspirent. Quotety vous accompagne dans chaque moment.</p>
             <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-2">
-              <a href="#" class="footer-icon text-primary"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="footer-icon text-primary"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="footer-icon text-primary"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="footer-icon text-primary" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="footer-icon text-primary" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="footer-icon text-primary" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
             </div>
           </div>
 
@@ -127,9 +126,7 @@
               <li><%= link_to "Citations", quotes_path, class: "text-decoration-none text-primary" %></li>
               <li><%= link_to "Auteurs", authors_path, class: "text-decoration-none text-primary" %></li>
               <li><%= link_to "À propos", about_path, class: "text-decoration-none text-primary" %></li>
-              <li>
-                <%= mail_to "contact.quotety@gmail.com", "✉️ contact.quotety@gmail.com", class: "text-decoration-none text-primary fw-semibold" %>
-              </li>
+              <li><%= mail_to "contact.quotety@gmail.com", "✉️ contact.quotety@gmail.com", class: "text-decoration-none text-primary fw-semibold" %></li>
             </ul>
           </div>
 

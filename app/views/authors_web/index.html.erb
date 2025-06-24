@@ -1,25 +1,53 @@
-<!-- Hero Section -->
+<!-- 🔍 JSON-LD STRUCTURED DATA -->
+<script type="application/ld+json">
+<%= raw({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Liste des auteur·ice·s - Quotety",
+  "description": "Trouvez des citations inspirantes de nos auteur·ice·s.",
+  "url": request.original_url,
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement":
+      @authors
+        .sort_by(&:name)
+        .map.with_index(1) do |author, index|
+          {
+            "@type": "Person",
+            "name": author.name,
+            "url": author_quotes_url(author),
+            "position": index
+          }
+        end
+  }
+}.to_json) %>
+</script>
+
+<!-- 🖼️ HERO SECTION -->
 <div class="author-hero d-flex align-items-center text-white" style="background-image: url('<%= asset_path("auteurs.jpg") %>'); background-size: cover; background-position: center; height: 350px;">
   <div class="container text-center">
-    <h1 class="fw-bold display-5">Nos Auteur.ice.s</h1>
+    <h1 class="fw-bold display-5">Nos auteur·ice·s</h1>
     <p class="lead">Découvrez des citations inspirantes.</p>
   </div>
 </div>
 
-<!-- Liste des auteurs -->
+<!-- 👥 LISTE DES AUTEURS -->
 <div class="container py-5">
-  <% if @authors.any? %>
+  <h2 class="visually-hidden">Liste des auteur·ice·s disponibles</h2>
+
+  <% if @authors &&
+        authors.any? %>
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
-      <% @authors
+      <% authors
           .sort_by(&:name)
           .each do |author| %>
         <div class="col">
           <%= link_to author_quotes_path(author), class: "text-decoration-none" do %>
             <div class="card shadow-sm border-0 ratio ratio-1x1 d-flex align-items-center justify-content-center" style="background-color: #ffeede; border-radius: 1rem;">
               <div class="card-body text-center px-3 d-flex flex-column justify-content-center align-items-center">
-                <h5 class="mb-2 fw-bold" style="font-family: 'Playfair Display', serif; color: #3e2f27;">
+                <h3 class="mb-2 h5 fw-bold" style="font-family: 'Playfair Display', serif; color: #3e2f27;">
                   <%= author.name %>
-                </h5>
+                </h3>
                 <span class="small text-muted"><%= pluralize(author.quotes.count, "citation") %></span>
               </div>
             </div>
@@ -28,10 +56,13 @@
       <% end %>
     </div>
 
+    <!-- ✅ PAGINATION -->
     <div class="mt-5 d-flex justify-content-center">
-      <%= paginate @authors %>
+      <%= paginate authors %>
     </div>
   <% else %>
-    <p class="text-center text-muted">Aucun auteur trouvé.</p>
+    <div class="alert alert-warning text-center">
+      Aucun auteur trouvé.
+    </div>
   <% end %>
 </div>
