@@ -1,3 +1,20 @@
+<!-- 🔍 BALISAGE STRUCTURÉ JSON-LD -->
+<script type="application/ld+json">
+<%= raw({
+  "@context": "https://schema.org",
+  "@type": "Quotation",
+  "text": @quote.content,
+  "author": {
+    "@type": "Person",
+    "name": @quote.author.name
+  },
+  "genre": @quote.category&.name,
+  "datePublished": @quote.created_at.strftime("%Y-%m-%d"),
+  "mainEntityOfPage": request.original_url
+}.to_json) %>
+</script>
+
+<!-- 📝 CITATION AFFICHÉE -->
 <div class="container py-5">
   <div class="card text-center shadow-sm mx-auto p-5" style="max-width: 600px; background-color: #ffeede; border-radius: 1rem;">
     <blockquote class="blockquote mb-4">
@@ -14,7 +31,7 @@
       <% if current_user %>
         <%= button_to "❤️", favorites_path(quote_id: @quote.id), method: :post, class: "btn btn-sm btn-outline-danger" %>
       <% end %>
-      <%= link_to "🖨️ Imprimer", print_quote_path(quote), target: "_blank", class: "btn btn-outline-secondary" %>
+      <%= link_to "🖨️ Imprimer", print_quote_path(@quote), target: "_blank", class: "btn btn-outline-secondary" %>
       <%= link_to "📤 Partager", "#", class: "btn btn-sm btn-outline-primary", data: { bs_toggle: "modal", bs_target: "#shareModal-#{@quote.id}" } %>
     </div>
   </div>

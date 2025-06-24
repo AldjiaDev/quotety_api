@@ -13,3 +13,17 @@
     </div>
   <% end %>
 </div>
+
+<!-- ✅ Balise JSON-LD pour Schema.org -->
+<script type="application/ld+json">
+<%= raw({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "#{@author.name}",
+  "url": request.original_url,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": request.original_url
+  }
+}.to_json) %>
+</script>
