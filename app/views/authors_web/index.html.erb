@@ -36,9 +36,9 @@
   <h2 class="visually-hidden">Liste des auteur·ice·s disponibles</h2>
 
   <% if @authors &&
-        authors.any? %>
+        @authors.any? %>
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
-      <% authors
+      <% @authors
           .sort_by(&:name)
           .each do |author| %>
         <div class="col">
@@ -58,7 +58,7 @@
 
     <!-- ✅ PAGINATION -->
     <div class="mt-5 d-flex justify-content-center">
-      <%= paginate authors %>
+      <%= paginate @authors %>
     </div>
   <% else %>
     <div class="alert alert-warning text-center">

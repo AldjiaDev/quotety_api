@@ -17,7 +17,7 @@
 
   <!-- 🎯 Titre principal (H1) -->
   <h1 class="fw-bold mb-5 text-center" style="font-family: 'Playfair Display', serif;">
-    Citations de <%= author.name %>
+    Citations de <%= @author.name %>
   </h1>
 
   <% if @quotes.any? %>
@@ -27,16 +27,18 @@
       <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
 
     </div>
+
+    <!-- 🔗 Lien vers la page Catégorie (s’il y a une seule catégorie pour toutes les citations) -->
+    <% unique_category = @quotes.map(&:category).uniq.compact %>
+    <% if unique_category.length == 1 %>
+      <div class="text-center mt-5">
+        <%= link_to "Explorer plus de citations sur le thème “#{unique_category.first.name}”", category_quotes_path(category: unique_category.first.slug), class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+
   <% else %>
     <div class="alert alert-warning text-center mt-5">
       Aucune citation disponible pour cet auteur.
-    </div>
-  <% end %>
-
-  <!-- 🔗 Lien vers la page Catégorie (optionnel si la plupart des citations partagent une catégorie) -->
-  <% if @quotes.map(&:category).uniq.length == 1 && @quotes.first&.category %>
-    <div class="text-center mt-5">
-      <%= link_to "Explorer plus de citations sur le thème “#{@quotes.first.category.name}”", category_quotes_path(category: @quotes.first.category.slug), class: "btn btn-outline-primary" %>
     </div>
   <% end %>
 
