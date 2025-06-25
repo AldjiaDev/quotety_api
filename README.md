@@ -1,24 +1,16 @@
-# README
+# Quotety 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> Website with inspirational quotes
 
-Things you may want to cover:
+## Tooling
 
-* Ruby version
+- Pages generated with Ruby on Rails
+- Hosted on Heroku => [quotety.aldjia.dev](https://quotety.aldjia.dev/)
+  
+## Getting started
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```console
+gem install bundler
+bundle install
+rails s
+```
