@@ -1,47 +1,48 @@
-<!-- ✅ BALISAGE STRUCTURÉ JSON-LD -->
+<!-- BALISAGE STRUCTURÉ JSON-LD -->
 <script type="application/ld+json">
-<%= raw({
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Citations inspirantes - Quotety",
-  "description": "Trouvez l’inspiration grâce à une sélection de citations classées par catégories, auteurs et thèmes.",
-  "url": request.original_url,
-  "mainEntity": [
-    {
-      "@type": "CollectionPage",
-      "name": "Catégories de citations",
-      "url": request.original_url + "#categories"
-    },
-    {
-      "@type": "CollectionPage",
-      "name": "Auteurs populaires",
-      "url": request.original_url + "#popular-authors"
-    },
-    {
-      "@type": "CollectionPage",
-      "name": "Citations récentes",
-      "url": request.original_url + "#citations"
-    }
-  ]
-}.to_json) %>
+  <%= raw({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Citations inspirantes - Quotety",
+    "description": "Trouvez l’inspiration grâce à une sélection de citations classées par catégories, auteurs et thèmes.",
+    "url": request.original_url,
+    "mainEntity": [
+      {
+        "@type": "CollectionPage",
+        "name": "Catégories de citations",
+        "url": "#{request.original_url}#categories"
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Auteurs populaires",
+        "url": "#{request.original_url}#popular-authors"
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Citations récentes",
+        "url": "#{request.original_url}#citations"
+      }
+    ]
+  }.to_json) %>
 </script>
 
-<!-- ✅ HERO SECTION -->
-<div class="hero-banner text-white d-flex align-items-center" style="background-image: url('<%= asset_path("hero.jpg") %>'); height: 450px; background-size: cover; background-position: center;">
-  <div class="container mt-0 pt-0 z-2">
+<!-- HERO SECTION -->
+<div class="hero-banner text-white d-flex align-items-center" style="background-image: url('<%= asset_path("hero.jpg") %>'); height: 450px;">
+  <div class="container z-2">
     <div class="row">
       <div class="col-md-6">
-        <h1 class="display-4 fw-bold">Trouvez l'inspiration.<br><span class="text-gradient">Une citation à la fois.</span></h1>
+        <h1 class="display-4 fw-bold">
+          Trouvez l'inspiration.<br>
+          <span class="text-gradient">Une citation à la fois.</span>
+        </h1>
         <p class="lead">Explorez des pensées puissantes, partagez des mots qui touchent l'âme, imprimez ce qui vous élève.</p>
-        <div class="d-flex gap-2">
-          <%= link_to "Explorer les citations", quotes_path, class: "btn btn-primary" %>
-        </div>
+        <%= link_to "Explorer les citations", quotes_path, class: "btn btn-primary mt-2" %>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ✅ CATEGORIES -->
+<!-- CATÉGORIES -->
 <div id="categories" class="bg-light py-5">
   <div class="container">
     <div class="text-center mb-5">
@@ -58,21 +59,19 @@
       "vie" => "Sur le sens, le quotidien et l’existence."
     } %>
 
-    <% categories = descriptions.keys %>
-
-    <% categories.each_slice(3).with_index do |row, index| %>
+    <% descriptions.each_slice(3).with_index do |row, index| %>
       <div class="row justify-content-center g-4 <%= 'mb-4' unless index == 1 %>">
-        <% row.each do |category| %>
+        <% row.each do |(slug, desc)| %>
           <div class="col-10 col-sm-6 col-md-4">
-            <div class="card category-card ratio ratio-1x1 overflow-hidden shadow-sm">
-              <%= link_to category_quotes_path(category: category), class: "stretched-link text-decoration-none" do %>
-                <%= image_tag "categories/#{category}.jpg", class: "w-100 h-100 object-fit-cover category-img", alt: "Image de la catégorie #{category.capitalize}" %>
+            <%= link_to category_quotes_path(category: slug), class: "text-decoration-none" do %>
+              <div class="category-card quotety-card ratio ratio-1x1 overflow-hidden position-relative">
+                <%= image_tag "categories/#{slug}.jpg", class: "w-100 h-100 object-fit-cover", alt: "Image de la catégorie #{slug.capitalize}" %>
                 <div class="card-img-overlay d-flex flex-column justify-content-end p-3 bg-gradient">
-                  <h3 class="text-white fw-bold fs-5"><%= category.capitalize %></h3>
-                  <p class="text-white small mb-0"><%= descriptions[category] %></p>
+                  <h3 class="text-white fw-bold fs-5"><%= slug.capitalize %></h3>
+                  <p class="text-white small mb-0"><%= desc %></p>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -80,7 +79,7 @@
   </div>
 </div>
 
-<!-- ✅ AUTEURS POPULAIRES -->
+<!-- AUTEURS POPULAIRES -->
 <% if @popular_authors.present? %>
   <div id="popular-authors" class="bg-white py-5">
     <div class="container">
@@ -93,7 +92,7 @@
         <% @popular_authors.each do |author| %>
           <div class="col">
             <%= link_to author_quotes_path(author), class: "text-decoration-none" do %>
-              <div class="card h-100 border-0 shadow-sm hover-shadow rounded-4 p-4" style="background-color: #fffaf3;">
+              <div class="quotety-card author-card h-100 p-4 text-center">
                 <h3 class="fw-bold mb-1 fs-5" style="font-family: 'Playfair Display', serif;"><%= author.name %></h3>
                 <p class="text-muted small mb-0">
                   <%= pluralize(author.quotes.count, "citation") %>
@@ -107,7 +106,7 @@
   </div>
 <% end %>
 
-<!-- ✅ CITATIONS RÉCENTES -->
+<!-- CITATIONS RÉCENTES -->
 <div id="citations" class="container py-5">
   <div class="text-center mb-5">
     <h2 class="fw-bold fs-3">📚 Citations récentes</h2>

@@ -1,4 +1,4 @@
-<!-- 🔍 JSON-LD STRUCTURED DATA -->
+<!-- JSON-LD STRUCTURED DATA -->
 <script type="application/ld+json">
 <%= raw({
   "@context": "https://schema.org",
@@ -23,7 +23,7 @@
 }.to_json) %>
 </script>
 
-<!-- 🖼️ HERO SECTION -->
+<!-- HERO SECTION -->
 <div class="author-hero d-flex align-items-center text-white" style="background-image: url('<%= asset_path("auteurs.jpg") %>'); background-size: cover; background-position: center; height: 350px;">
   <div class="container text-center">
     <h1 class="fw-bold display-5">Nos auteur·ice·s</h1>
@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<!-- 👥 LISTE DES AUTEURS -->
+<!-- LISTE DES AUTEURS -->
 <div class="container py-5">
   <h2 class="visually-hidden">Liste des auteur·ice·s disponibles</h2>
 
@@ -56,7 +56,7 @@
       <% end %>
     </div>
 
-    <!-- ✅ PAGINATION -->
+    <!-- PAGINATION -->
     <div class="mt-5 d-flex justify-content-center">
       <%= paginate @authors %>
     </div>

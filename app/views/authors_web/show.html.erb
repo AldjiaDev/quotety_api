@@ -1,4 +1,4 @@
-<!-- ✅ BALISE JSON-LD pour Schema.org -->
+<!-- BALISE JSON-LD pour Schema.org -->
 <script type="application/ld+json">
 <%= raw({
   "@context": "https://schema.org",
@@ -12,7 +12,7 @@
 }.to_json) %>
 </script>
 
-<!-- ✅ CONTENU DE LA PAGE -->
+<!-- CONTENU DE LA PAGE -->
 <div class="container py-5">
 
   <!-- 🎯 Titre principal (H1) -->
@@ -23,12 +23,12 @@
   <% if @quotes.any? %>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-      <!-- 🧠 Liste de citations -->
+      <!-- Liste de citations -->
       <%= render partial: "quotes_web/quote_card", collection: @quotes, as: :quote %>
 
     </div>
 
-    <!-- 🔗 Lien vers la page Catégorie (s’il y a une seule catégorie pour toutes les citations) -->
+    <!-- Lien vers la page Catégorie (s’il y a une seule catégorie pour toutes les citations) -->
     <% unique_category = @quotes.map(&:category).uniq.compact %>
     <% if unique_category.length == 1 %>
       <div class="text-center mt-5">

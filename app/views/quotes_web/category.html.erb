@@ -1,5 +1,5 @@
 <% if @category %>
-  <!-- 🔍 BALISAGE STRUCTURÉ JSON-LD -->
+  <!-- BALISAGE STRUCTURÉ JSON-LD -->
   <script type="application/ld+json">
   <%= raw({
     "@context": "https://schema.org",
@@ -23,24 +23,24 @@
   }.to_json) %>
   </script>
 
-  <!-- ✅ HERO DE LA CATÉGORIE -->
-  <div class="category-hero text-center text-dark py-5" style="background-color: #fff4ec;">
+  <!-- HERO DE LA CATÉGORIE -->
+  <div class="category-hero text-center py-5" style="background-color: #fff4ec;">
     <div class="container">
       <p class="text-uppercase text-danger fw-semibold small mb-2">Catégorie</p>
       <h1 class="display-4 fw-bold mb-4"><%= @category.name %></h1>
 
       <div class="mx-auto" style="max-width: 960px;">
         <%= image_tag "categories/#{@category.slug}.jpg",
-              class: "img-fluid w-100 rounded shadow-sm",
+              class: "img-fluid w-100 shadow-sm rounded-4",
               style: "height: 300px; object-fit: cover;",
               alt: "Illustration pour la catégorie #{@category.name}" %>
       </div>
     </div>
   </div>
 
-  <!-- ✅ LISTE DES CITATIONS DE LA CATÉGORIE -->
+  <!-- CITATIONS DE LA CATÉGORIE -->
   <div class="container py-5">
-    <h2 class="visually-hidden">Citations dans la catégorie <%= @category.name %></h2>
+    <h2 class="visually-hidden">Citations de la catégorie <%= @category.name %></h2>
 
     <% if @quotes.any? %>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
