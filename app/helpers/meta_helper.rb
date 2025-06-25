@@ -1,7 +1,12 @@
 module MetaHelper
   def meta_title(title = nil)
-    base_title = "Quotety - Des mots qui marquent"
-    title.present? ? "#{title} — Quotety" : base_title
+    base = "Quotety – Des mots qui marquent"
+
+    if title.present?
+      "#{title} sur Quotety – Des mots qui marquent"
+    else
+      base
+    end
   end
 
   def meta_description(description = nil)
@@ -9,7 +14,7 @@ module MetaHelper
   end
 
   def canonical_url
-    request.base_url + request.fullpath
+    request.original_url.split("?").first # Nettoie les paramètres inutiles
   end
 
   def og_image_url(title = "Citations inspirantes")
