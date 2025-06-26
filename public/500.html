@@ -1,3 +1,17 @@
-<h1>😵 Erreur interne</h1>
-<p>Une erreur s’est produite sur le serveur. Nous y travaillons !</p>
-<a href="/">Revenir à l’accueil</a>
+<div class="container py-5 text-center">
+  <h1 class="display-4 fw-bold mb-4">😓 Oups, quelque chose s’est mal passé.</h1>
+
+  <p class="lead mb-3">
+    Une erreur s’est produite sur notre serveur. Pas de panique, notre équipe est déjà sur le coup.
+  </p>
+
+  <p class="text-muted mb-4">
+    Vous pouvez réessayer dans quelques instants. Si le problème persiste,
+    <a href="https://github.com/AldjiaDev/quotety_api/issues/new" class="link-primary fw-semibold" target="_blank" rel="noopener">
+      ouvrez un ticket sur GitHub
+    </a>
+    pour que nous puissions vous aider.
+  </p>
+
+  <%= link_to "Revenir à l’accueil", root_path, class: "btn btn-primary px-4 py-2" %>
+</div>
