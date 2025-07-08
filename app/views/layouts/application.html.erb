@@ -57,6 +57,9 @@
         <div class="container">
           <%= link_to "Quotety", root_path, class: "navbar-brand quotety-logo", aria: { label: "Accueil Quotety" } %>
 
+
+
+
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-label="Ouvrir la navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -78,7 +81,7 @@
             <% if current_user %>
               <div class="dropdown">
                 <a class="btn btn-outline-secondary dropdown-toggle rounded-pill" href="#" role="button" data-bs-toggle="dropdown">
-                  👤 <%= current_user.username %>
+                  <%= current_user.username %>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li><%= link_to "Mon profil", me_path, class: "dropdown-item" %></li>
